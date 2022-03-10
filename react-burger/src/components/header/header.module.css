@@ -1,0 +1,46 @@
+
+.header {
+    height: 88px;
+    background: rgba(28, 28, 33, 1);
+    box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.04), 0px 4px 8px 0px rgba(0, 0, 0, 0.04), 0px 16px 24px 0px rgba(0, 0, 0, 0.04), 0px 24px 32px 0px rgba(0, 0, 0, 0.04);
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1280px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+.container ul {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container ul li {
+    display: flex;
+    justify-content: center;
+}
+
+.profile {
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    padding-right: 100px;
+}
+
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+

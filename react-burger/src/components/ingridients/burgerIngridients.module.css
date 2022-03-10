@@ -1,0 +1,19 @@
+
+.cards {
+    max-width: 600px;
+    position: relative;
+}
+
+.burgers {
+    width: 600px;
+    overflow: scroll;
+    position: relative;
+    height: 65%;
+}
+
+
+.rolls {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+}
