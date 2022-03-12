@@ -2,12 +2,13 @@ import React from 'react';
 import {ConstructorElement, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import getData from '../../utils/data';
 import BacketItem from "./BacketItem";
+import componentStyle from './burgerComponents.module.css';
 
 function BurgerComponents() {
     const data = getData();
     return (
-        <div>
-            <div className={'pt-25 pb-10 pl-4 pr-4'} style={{ display: 'flex', flexDirection: 'column', gap: '10px',
+        <div className={componentStyle.container}>
+            <div className={`pt-25 pb-10 ${componentStyle.componentsOfBurger}`} style={{ display: 'flex', flexDirection: 'column', gap: '10px',
             justifyContent: "right"}}>
                 <div className={'pl-8'}>
                     <ConstructorElement
@@ -18,9 +19,19 @@ function BurgerComponents() {
                         thumbnail={data[0].image}
                     />
                 </div>
-                <BacketItem></BacketItem>
-                <BacketItem></BacketItem>
-                <BacketItem></BacketItem>
+                <section className={`${componentStyle.component} pr-4`}
+                         style={{ display: 'flex', flexDirection: 'column', gap: '10px'}}>
+                    <BacketItem></BacketItem>
+                    <BacketItem></BacketItem>
+                    <BacketItem></BacketItem>
+                    <BacketItem></BacketItem>
+                    <BacketItem></BacketItem>
+                    <BacketItem></BacketItem>
+                    <BacketItem></BacketItem>
+                    <BacketItem></BacketItem>
+                    <BacketItem></BacketItem>
+                    <BacketItem></BacketItem>
+                </section>
                 <div className={'pl-8'}>
                     <ConstructorElement
                         type="bottom"

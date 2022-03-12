@@ -7,7 +7,7 @@ function BacketItem({text = "Краторная булка N-200i (верх)", p
     const data = getData();
     return (
         <div style={{display: "flex", alignItems: 'center', justifyContent: 'space-between'}}>
-            <DragIcon type="primary" className={'pr-4'}/>
+            <span className={'pr-2'}><DragIcon type="primary"/></span>
             <ConstructorElement
                 text={text}
                 price={price}
