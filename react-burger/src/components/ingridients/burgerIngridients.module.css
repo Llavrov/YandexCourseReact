@@ -8,7 +8,9 @@
     width: 600px;
     overflow: scroll;
     position: relative;
-    height: 65%;
+    height: 1px;
+    min-height: 70%;
+    max-height: 80%;
 }
 
 

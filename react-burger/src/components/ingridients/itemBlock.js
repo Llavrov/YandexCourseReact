@@ -15,9 +15,8 @@ class ItemBlock extends React.Component {
         return (
             <div className={`${itemStyle.container} ml-4`}>
                 <img className={`${itemStyle.image} pr-4 pl-4`} src={this.image} alt={this.image}/>
-                <div style={{display: 'flex', justifyContent: "center", flexDirection: "row"}}>
-                    <p className="pt-1 pb-1 text text_type_digits-default">{this.price} <CurrencyIcon type="secondary" /></p>
-                </div>
+                <span style={{display: 'inline-flex', alignItems: "center", justifyContent: "flex-end"}}
+                      className="pt-1 pb-1 text text_type_digits-default">{this.price} <CurrencyIcon type="primary" /></span>
                 <p style={{maxWidth: "272px", textAlign: 'center'}}className="pb-8 text text_type_main-default">
                     {this.name}
                 </p>

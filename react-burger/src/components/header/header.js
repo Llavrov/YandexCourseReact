@@ -9,11 +9,11 @@ class Header extends React.Component {
             <header className={headerStyle.header}>
                 <div className={headerStyle.container}>
                     <ul>
-                        <li className={'pt-5 pb-5 pr-5'}>
+                        <li className={'pt-4 pb-4 pr-5 pl-5'}>
                             <BurgerIcon className={headerStyle.icon}></BurgerIcon>
                             <p className="pl-2 text text_type_main-default">Конструктор</p>
                         </li>
-                        <li className={'pt-5 pb-5 pr-5'}>
+                        <li className={'pt-4 pb-4 pr-5 pl-5'}>
                             <ListIcon className={headerStyle.icon}></ListIcon>
                             <p className="pl-2 text text_type_main-default">Лента заказов</p>
                         </li>
@@ -21,7 +21,7 @@ class Header extends React.Component {
                     <div className={headerStyle.logo}>
                         <Logo></Logo>
                     </div>
-                    <div className={`${headerStyle.profile} p-5`}>
+                    <div className={`${headerStyle.profile} pt-4 pb-4 pr-5 pl-5`}>
                         <ProfileIcon className={headerStyle.icon}></ProfileIcon>
                         <p className="pl-2 text text_type_main-default">Личный кабинет</p>
                     </div>

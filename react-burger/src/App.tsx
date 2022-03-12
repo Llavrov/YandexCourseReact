@@ -2,9 +2,7 @@ import React from 'react';
 import Header from "./components/header/header";
 import './App.css';
 import BurgerIngridients from "./components/ingridients/burgerIngridients";
-import getData from "./utils/data";
-
-const data = getData();
+import BurgerComponents from "./components/burgerComponents/burgerComponents";
 
 function App() {
   return (
@@ -13,7 +11,7 @@ function App() {
 
         <div className={'burger'}>
             <BurgerIngridients></BurgerIngridients>
-            <BurgerIngridients></BurgerIngridients>
+            <BurgerComponents></BurgerComponents>
         </div>
     </div>
   );

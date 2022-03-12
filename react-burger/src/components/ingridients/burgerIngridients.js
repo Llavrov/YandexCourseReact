@@ -22,12 +22,12 @@ class BurgerIngridients extends React.Component {
 
     render () {
         return (
-            <div className={inStyle.cards}>
+            <div className={`${inStyle.cards} mr-10`}>
                 <p className="text text_type_main-large pb-5 pt-10">
                     Соберите бургер
                 </p>
-                {/*<TabBurger></TabBurger>*/}
-                <div  className={inStyle.burgers}>
+                <TabBurger></TabBurger>
+                <div  className={`${inStyle.burgers} pt-10`}>
                     <p className="pb-6 text text_type_main-medium">Булки</p>
                     <div className={inStyle.rolls}>
                         <ItemBlock image={this.data[0].image} name={this.data[0].name}></ItemBlock>
