@@ -5,14 +5,14 @@ function TabBurger() {
     const [current, setCurrent] = React.useState('one')
     return (
         <div style={{ display: 'flex' }}>
-            <Tab value="one" active={current === 'one'} onClick={setCurrent}>
-                One
+            <Tab value="Булки" active={current === 'Булки'} onClick={setCurrent}>
+                Булки
             </Tab>
-            <Tab value="two" active={current === 'two'} onClick={setCurrent}>
-                Two
+            <Tab value="Соусы" active={current === 'Соусы'} onClick={setCurrent}>
+                Соусы
             </Tab>
-            <Tab value="three" active={current === 'three'} onClick={setCurrent}>
-                Three
+            <Tab value="Котлеты" active={current === 'Котлеты'} onClick={setCurrent}>
+                Котлеты
             </Tab>
         </div>
     )

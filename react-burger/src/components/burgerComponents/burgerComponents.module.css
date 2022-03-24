@@ -1,10 +1,10 @@
 .container, .componentsOfBurger {
-    height: 85%;
+    max-height: 85%;
     position: relative;
 }
 .component {
     overflow-y: scroll;
-    height: 60%;
+    max-height: 60%;
 }
 
 .component::-webkit-scrollbar {
