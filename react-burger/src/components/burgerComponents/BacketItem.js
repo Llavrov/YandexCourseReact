@@ -1,6 +1,6 @@
 import React from 'react';
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import data from "../../utils/data";
+import {data} from "../../utils/data";
 import PropTypes from 'prop-types';
 
 function BacketItem({text = "Краторная булка N-200i (верх)", price = 50, thumbnail}) {
