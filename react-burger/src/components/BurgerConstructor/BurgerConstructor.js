@@ -1,18 +1,17 @@
 import React from 'react';
 import {ConstructorElement, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import BacketItem from "./BacketItem";
-import componentStyle from './burgerComponents.module.css';
+import componentStyle from './BurgerConstructor.module.css';
 import PropTypes from "prop-types";
 import OrderDetails from "../modal/OrderDetails";
 
-function BurgerComponents({data, }) {
+function BurgerConstructor({data, }) {
     const [isClosedPopup, setClosedPopup] = React.useState(true);
 
     return (
         <div className={componentStyle.container}>
             {!isClosedPopup && <OrderDetails setClose={setClosedPopup}></OrderDetails>}
-            <div className={`pt-25 pb-10 ${componentStyle.componentsOfBurger}`} style={{ display: 'flex', flexDirection: 'column', gap: '10px',
-            justifyContent: "right"}}>
+            <div className={`pt-25 pb-10 ${componentStyle.componentsOfBurger}`} >
                 <div className={'pl-8'}>
                     <ConstructorElement
                         type="top"
@@ -22,11 +21,10 @@ function BurgerComponents({data, }) {
                         thumbnail={data[0].image}
                     />
                 </div>
-                <section className={`${componentStyle.component} pr-4`}
-                         style={{ display: 'flex', flexDirection: 'column', gap: '10px'}}>
+                <section className={`${componentStyle.component} pr-4`}>
                     {
                         data.filter(i => i.type === 'main').map((i, index) => {
-                            return (<BacketItem key={`${index}-${i.type}`}thumbnail={i.image} price={i.price} />)
+                            return (<BacketItem key={`${i._id}`} thumbnail={i.image} price={i.price} />)
                         })
 
                     }
@@ -41,9 +39,10 @@ function BurgerComponents({data, }) {
                     />
                 </div>
             </div>
-            <div style={{float: "right", display: "flex", alignItems: 'center'}}>
+            <div className={componentStyle.footerConstructor}>
                 <p className="text text_type_digits-medium pr-10">
-                    {data.filter(i => i.type === 'main').reduce((sum, cur) => sum + cur.price, 0)}<CurrencyIcon type="primary" /></p>
+                    {data.filter(i => i.type === 'main').reduce((sum, cur) => sum + cur.price, 0)}<CurrencyIcon type="primary" />
+                </p>
                 <Button type="primary" size="large" onClick={() => setClosedPopup(!isClosedPopup)}>
                     Нажми на меня
                 </Button>
@@ -52,7 +51,7 @@ function BurgerComponents({data, }) {
     )
 }
 
-BurgerComponents.propTypes = {
+BurgerConstructor.propTypes = {
     data: PropTypes.arrayOf(
         PropTypes.shape({
             _id: PropTypes.string,
@@ -72,4 +71,4 @@ BurgerComponents.propTypes = {
 }
 
 
-export default BurgerComponents;
+export default BurgerConstructor;

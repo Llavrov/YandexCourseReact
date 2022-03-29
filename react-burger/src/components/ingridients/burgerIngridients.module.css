@@ -34,3 +34,31 @@
         min-height: 80%;
     }
 }
+
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.image {
+    height: 120px;
+    width: 240px;
+}
+
+.price {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.tabBurger {
+    display: flex;
+}
+
+.p{
+    max-width: 272px;
+    text-align: center;
+}

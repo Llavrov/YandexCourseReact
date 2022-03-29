@@ -2,26 +2,31 @@ import React from 'react';
 import Header from "./header/header";
 import AppStyle from './App.module.css';
 import BurgerIngridients from "./ingridients/burgerIngridients";
-import BurgerComponents from "./burgerComponents/burgerComponents";
-import {URL} from "../utils/data";
-import OrderDetails from "./modal/OrderDetails";
+import BurgerConstructor from "./BurgerConstructor/BurgerConstructor";
+import {URL, itemData} from "../utils/data";
 
 
 function App() {
-    let [isData, setData] = React.useState(null);
+    const [data, setData] = React.useState(itemData);
     React.useEffect(() => {
        fetch(URL)
-           .then(result => result.json())
+           .then(result => {
+               try {
+                   return result.json()
+               } catch (e){
+                   console.log(e)
+               }
+           })
            .then((result) =>  setData(result.data))
            .catch(e => console.log(e));
     },[]);
 
-  return isData && (
+  return data && (
     <div className={AppStyle.App}>
       <Header></Header>
         <div className={AppStyle.burger}>
-            <BurgerIngridients data={isData} ></BurgerIngridients>
-            <BurgerComponents data={isData}></BurgerComponents>
+            <BurgerIngridients data={data} ></BurgerIngridients>
+            <BurgerConstructor data={data}></BurgerConstructor>
         </div>
     </div>
   );

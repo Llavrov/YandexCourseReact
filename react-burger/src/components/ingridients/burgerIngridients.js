@@ -3,11 +3,18 @@ import inStyle from './burgerIngridients.module.css';
 import TabBurger from "./tabBurger";
 import ItemBlock from "./itemBlock";
 import PropTypes from "prop-types";
+import IngridientDetails from "../modal/IngridientDetails";
+import Modal from "../modal/Modal";
 
 function BurgerIngridients({data}) {
-
+    const [info, setInfo] = React.useState(null);
+    const [isClose, setClose] = React.useState(true);
     return (
         <div className={`${inStyle.cards} mr-10`}>
+            {!isClose &&
+            <Modal onClose={setClose} header={'Детали заказа'}  classModal={'pt-10'}>
+                <IngridientDetails {...info}></IngridientDetails>
+            </Modal>}
             <p className="text text_type_main-large pb-5 pt-10">
                 Соберите бургер
             </p>
@@ -17,7 +24,7 @@ function BurgerIngridients({data}) {
                 <div className={inStyle.rolls}>
                     {
                         data.filter(i => i.type === 'bun').map((item, index) => {
-                            return (<ItemBlock {...item} key={`${index}-${item.type}`}/>)
+                            return (<ItemBlock setInfo={setInfo} setClose={setClose} {...item} key={`${item._id}`}/>)
                         })
                     }
                 </div>
@@ -25,7 +32,7 @@ function BurgerIngridients({data}) {
                 <div className={inStyle.rolls}>
                     {
                         data.filter(i => i.type === 'sauce').map((item, index) => {
-                            return (<ItemBlock {...item} key={`${index}-${item.type}`}/>)
+                            return (<ItemBlock setInfo={setInfo} setClose={setClose} {...item} key={`${item._id}`}/>)
                         })
                     }
                 </div>
@@ -33,7 +40,7 @@ function BurgerIngridients({data}) {
                 <div className={inStyle.rolls}>
                     {
                         data.filter(i => i.type === 'main').map((item, index) => {
-                            return (<ItemBlock {...item} key={`${index}-${item.type}`}/>)
+                            return (<ItemBlock setInfo={setInfo} setClose={setClose} {...item} key={`${item._id}`}/>)
                         })
                     }
                 </div>

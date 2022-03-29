@@ -2,9 +2,18 @@
     max-height: 85%;
     position: relative;
 }
+.componentsOfBurger{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: right;
+}
 .component {
     overflow-y: scroll;
     max-height: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .component::-webkit-scrollbar {
@@ -21,4 +30,16 @@
     .component {
         min-height: 80%;
     }
+}
+
+.footerConstructor {
+    float: right;
+    display: flex;
+    align-items: center;
+}
+
+.backetItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
