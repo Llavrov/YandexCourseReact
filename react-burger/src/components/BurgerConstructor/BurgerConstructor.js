@@ -4,13 +4,18 @@ import BacketItem from "./BacketItem";
 import componentStyle from './BurgerConstructor.module.css';
 import OrderDetails from "../modal/OrderDetails";
 import {TypesData} from "../../utils/types";
+import PropTypes from "prop-types";
+import Modal from "../modal/Modal";
 
-function BurgerConstructor({data, }) {
+function BurgerConstructor({data}) {
     const [isClosedPopup, setClosedPopup] = React.useState(true);
 
     return (
         <div className={componentStyle.container}>
-            {!isClosedPopup && <OrderDetails setClose={setClosedPopup}></OrderDetails>}
+            {!isClosedPopup &&
+            <Modal onClose={setClosedPopup} header={''}>
+                <OrderDetails></OrderDetails>
+            </Modal>}
             <div className={`pt-25 pb-10 ${componentStyle.componentsOfBurger}`} >
                 <div className={'pl-8'}>
                     <ConstructorElement
@@ -51,7 +56,9 @@ function BurgerConstructor({data, }) {
     )
 }
 
-BurgerConstructor.propTypes = TypesData;
+BurgerConstructor.propTypes = {
+    data: PropTypes.arrayOf(TypesData).isRequired,
+};
 
 
 export default BurgerConstructor;

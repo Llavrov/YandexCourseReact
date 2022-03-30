@@ -19,9 +19,9 @@ function BacketItem({name = "Краторная булка N-200i", price = 50, 
 }
 
 BacketItem.propTypes = {
-    text: PropTypes.string,
-    price: PropTypes.number,
-    thumbnail: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    thumbnail: PropTypes.string.isRequired,
 };
 
 export default BacketItem;

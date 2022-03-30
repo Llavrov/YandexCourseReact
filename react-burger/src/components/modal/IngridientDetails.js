@@ -1,7 +1,9 @@
 import React from 'react';
 import IngridientStyle from './ModalItem.module.css';
+import {TypesData} from "../../utils/types";
+import PropTypes from "prop-types";
 
-function IngridientDetails({...props}){;
+function IngridientDetails({...props}){
 
     return (
         <>
@@ -28,5 +30,12 @@ function IngridientDetails({...props}){;
         </>
     )
 }
+
+IngridientDetails.propTypes = {
+    ...TypesData,
+    isRequired: PropTypes.string,
+    setInfo: PropTypes.func,
+    setClose: PropTypes.func.isRequired
+};
 
 export default IngridientDetails;

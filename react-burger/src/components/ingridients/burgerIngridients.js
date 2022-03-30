@@ -5,6 +5,7 @@ import ItemBlock from "./itemBlock";
 import IngridientDetails from "../modal/IngridientDetails";
 import Modal from "../modal/Modal";
 import {TypesData} from "../../utils/types";
+import PropTypes from "prop-types";
 
 function BurgerIngridients({data}) {
     const [info, setInfo] = React.useState(null);
@@ -12,7 +13,7 @@ function BurgerIngridients({data}) {
     return (
         <div className={`${inStyle.cards} mr-10`}>
             {!isClose &&
-            <Modal onClose={setClose} header={'Детали заказа'}  classModal={'pt-10'}>
+            <Modal onClose={setClose} header={'Детали заказа'}  classModal={'mt-10'}>
                 <IngridientDetails {...info}></IngridientDetails>
             </Modal>}
             <p className="text text_type_main-large pb-5 pt-10">
@@ -50,7 +51,9 @@ function BurgerIngridients({data}) {
 
 }
 
-BurgerIngridients.propTypes = TypesData;
+BurgerIngridients.propTypes = {
+    data: PropTypes.arrayOf(TypesData).isRequired,
+};
 
 export default BurgerIngridients;
 

@@ -1,12 +1,11 @@
 import React from 'react';
-import Modal from "./Modal";
 import DetailsStyle from './OrderDetails.module.css';
 
 
-function OrderDetails({setClose}){;
+function OrderDetails(){;
 
     return (
-        <Modal onClose={setClose} header={''}>
+        <>
             <p className={`${DetailsStyle.OrderNumber} pt-30 pb-8 text text_type_digits-large`}>014324</p>
             <p className="pb-15 text text_type_main-medium">идентификатор заказа</p>
             <div>
@@ -32,8 +31,8 @@ function OrderDetails({setClose}){;
                 </svg>
             </div>
             <p className="pt-15 pb-2 text text_type_main-small">Ваш заказ начали готовить</p>
-            <p className={`${DetailsStyle.pColor} pb - 30 text text_type_main-small`} >дождитесь готовности заказа на орбитальной станции</p>
-        </Modal>
+            <p className={`${DetailsStyle.pColor} pb-30 text text_type_main-small`} >дождитесь готовности заказа на орбитальной станции</p>
+        </>
     )
 }
 

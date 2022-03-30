@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalStyle from './ModalItem.module.css';
 import ModalOverlay from "./ModalOverlay";
+import {TypesData} from "../../utils/types";
+import PropTypes from "prop-types";
 
 function Modal({...props}) {
     const modalRoot = document.getElementById('reactModal');
@@ -13,7 +15,6 @@ function Modal({...props}) {
 
         return () => document.removeEventListener('keydown', handleEscapeKey);
     }, []);
-
     return ReactDOM.createPortal(
         <ModalOverlay onClose={props.onClose}>
             <div onClick={(e) => {e.stopPropagation()}}
@@ -22,7 +23,9 @@ function Modal({...props}) {
                     <CloseIcon type="primary"/>
                 </div>
                 <div className={ModalStyle.container}>
-                    <p className={`${props.classModal} text text_type_main-large`}>{props.header}</p>
+                    <div className={`${ModalStyle.header} ${props.classModal} pl-10`}>
+                        <p className={`text text_type_main-large`}>{props.header}</p>
+                    </div>
                     {props.children}
                 </div>
             </div>
@@ -30,6 +33,11 @@ function Modal({...props}) {
         modalRoot
     );
 }
-// style={{position: 'absolute', right: 0}}
-// style={{minWidth: '315px', width: '720px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}
+Modal.propTypes = {
+    children: PropTypes.object.isRequired,
+    onClose: PropTypes.func.isRequired,
+    header: PropTypes.string,
+    classModal: PropTypes.string,
+};
+
 export default Modal;
