@@ -2,8 +2,8 @@ import React from 'react';
 import {ConstructorElement, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import BacketItem from "./BacketItem";
 import componentStyle from './BurgerConstructor.module.css';
-import PropTypes from "prop-types";
 import OrderDetails from "../modal/OrderDetails";
+import {TypesData} from "../../utils/types";
 
 function BurgerConstructor({data, }) {
     const [isClosedPopup, setClosedPopup] = React.useState(true);
@@ -24,7 +24,7 @@ function BurgerConstructor({data, }) {
                 <section className={`${componentStyle.component} pr-4`}>
                     {
                         data.filter(i => i.type === 'main').map((i, index) => {
-                            return (<BacketItem key={`${i._id}`} thumbnail={i.image} price={i.price} />)
+                            return (<BacketItem key={`${i._id}`} name={i.name} thumbnail={i.image} price={i.price} />)
                         })
 
                     }
@@ -51,24 +51,7 @@ function BurgerConstructor({data, }) {
     )
 }
 
-BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(
-        PropTypes.shape({
-            _id: PropTypes.string,
-            name: PropTypes.string,
-            type: PropTypes.string,
-            proteins: PropTypes.number,
-            fat: PropTypes.number,
-            carbohydrates: PropTypes.number,
-            calories: PropTypes.number,
-            price: PropTypes.number,
-            image: PropTypes.string,
-            image_mobile: PropTypes.string,
-            image_large: PropTypes.string,
-            __v: PropTypes.number,
-        })
-    )
-}
+BurgerConstructor.propTypes = TypesData;
 
 
 export default BurgerConstructor;

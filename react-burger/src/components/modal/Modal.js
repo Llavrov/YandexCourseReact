@@ -8,10 +8,10 @@ function Modal({...props}) {
     const modalRoot = document.getElementById('reactModal');
 
     React.useEffect(() => {
-        const Escape = (event) => {if (event.key === 'Escape') props.onClose(true)}
-        document.addEventListener('keydown', Escape);
+        const handleEscapeKey = (event) => {if (event.key === 'Escape') props.onClose(true)}
+        document.addEventListener('keydown', handleEscapeKey);
 
-        return () => document.removeEventListener('keydown', Escape);
+        return () => document.removeEventListener('keydown', handleEscapeKey);
     }, []);
 
     return ReactDOM.createPortal(

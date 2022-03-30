@@ -2,9 +2,9 @@ import React from 'react';
 import inStyle from './burgerIngridients.module.css';
 import TabBurger from "./tabBurger";
 import ItemBlock from "./itemBlock";
-import PropTypes from "prop-types";
 import IngridientDetails from "../modal/IngridientDetails";
 import Modal from "../modal/Modal";
+import {TypesData} from "../../utils/types";
 
 function BurgerIngridients({data}) {
     const [info, setInfo] = React.useState(null);
@@ -50,24 +50,7 @@ function BurgerIngridients({data}) {
 
 }
 
-BurgerIngridients.propTypes = {
-    data: PropTypes.arrayOf(
-        PropTypes.shape({
-            _id: PropTypes.string,
-            name: PropTypes.string,
-            type: PropTypes.string,
-            proteins: PropTypes.number,
-            fat: PropTypes.number,
-            carbohydrates: PropTypes.number,
-            calories: PropTypes.number,
-            price: PropTypes.number,
-            image: PropTypes.string,
-            image_mobile: PropTypes.string,
-            image_large: PropTypes.string,
-            __v: PropTypes.number,
-        })
-    )
-}
+BurgerIngridients.propTypes = TypesData;
 
 export default BurgerIngridients;
 

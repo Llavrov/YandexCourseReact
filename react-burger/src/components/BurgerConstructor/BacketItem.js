@@ -4,12 +4,13 @@ import {itemData} from "../../utils/data";
 import PropTypes from 'prop-types';
 import componentStyle from './BurgerConstructor.module.css';
 
-function BacketItem({text = "Краторная булка N-200i (верх)", price = 50, thumbnail}) {
+function BacketItem({name = "Краторная булка N-200i", price = 50, thumbnail}) {
     return (
         <div className={componentStyle.backetItem}>
             <span className={'pr-2'}><DragIcon type="primary"/></span>
             <ConstructorElement
-                text={text}
+
+                text={name}
                 price={price}
                 thumbnail={thumbnail || itemData[1].image}
             />
