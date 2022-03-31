@@ -1,50 +1,59 @@
 import React from 'react';
-import {ListIcon, Logo, ProfileIcon, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import inStyle from './burgerIngridients.module.css';
 import TabBurger from "./tabBurger";
-import getData from '../../utils/data';
 import ItemBlock from "./itemBlock";
-class BurgerIngridients extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {current: 'one'};
-        this.setCurrent = this.setCurrent.bind(this);
-        this.current = 'one'
-        this.data = getData();
-    }
+import IngridientDetails from "../modal/IngridientDetails";
+import Modal from "../modal/Modal";
+import {TypesData} from "../../utils/types";
+import PropTypes from "prop-types";
 
-    setCurrent(cur) {
-        this.setState({
-            current: cur
-        })
-    }
-
-    render () {
-        return (
-            <div className={`${inStyle.cards} mr-10`}>
-                <p className="text text_type_main-large pb-5 pt-10">
-                    Соберите бургер
-                </p>
-                <TabBurger></TabBurger>
-                <div  className={`${inStyle.burgers} pt-10`}>
-                    <p className="pb-6 text text_type_main-medium">Булки</p>
-                    <div className={inStyle.rolls}>
-                        <ItemBlock image={this.data[0].image} name={this.data[0].name}></ItemBlock>
-                        <ItemBlock image={this.data[0].image} name={this.data[0].name}></ItemBlock>
-                    </div>
-                    <p className="pb-6 pt-10 text text_type_main-medium">Соусы</p>
-                    <div className={inStyle.rolls}>
-                        {
-                            [0,1,2,3].map(i => {
-                                 return (<ItemBlock image={this.data[i].image} name={this.data[i].name}></ItemBlock>)
-                            })
-                        }
-                    </div>
+function BurgerIngridients({data}) {
+    const [info, setInfo] = React.useState(null);
+    const [isClose, setClose] = React.useState(true);
+    return (
+        <div className={`${inStyle.cards} mr-10`}>
+            {!isClose &&
+            <Modal onClose={setClose} header={'Детали заказа'}  classModal={'mt-10'}>
+                <IngridientDetails {...info}></IngridientDetails>
+            </Modal>}
+            <p className="text text_type_main-large pb-5 pt-10">
+                Соберите бургер
+            </p>
+            <TabBurger></TabBurger>
+            <div  className={`${inStyle.burgers} pt-10`}>
+                <p className="pb-6 text text_type_main-medium">Булки</p>
+                <div className={inStyle.rolls}>
+                    {
+                        data.filter(i => i.type === 'bun').map((item, index) => {
+                            return (<ItemBlock setInfo={setInfo} setClose={setClose} {...item} key={`${item._id}`}/>)
+                        })
+                    }
+                </div>
+                <p className="pb-6 pt-10 text text_type_main-medium">Соусы</p>
+                <div className={inStyle.rolls}>
+                    {
+                        data.filter(i => i.type === 'sauce').map((item, index) => {
+                            return (<ItemBlock setInfo={setInfo} setClose={setClose} {...item} key={`${item._id}`}/>)
+                        })
+                    }
+                </div>
+                <p className="pb-6 pt-10 text text_type_main-medium">Начинка</p>
+                <div className={inStyle.rolls}>
+                    {
+                        data.filter(i => i.type === 'main').map((item, index) => {
+                            return (<ItemBlock setInfo={setInfo} setClose={setClose} {...item} key={`${item._id}`}/>)
+                        })
+                    }
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
+
 }
 
+BurgerIngridients.propTypes = {
+    data: PropTypes.arrayOf(TypesData).isRequired,
+};
+
 export default BurgerIngridients;
+
