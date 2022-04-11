@@ -4,12 +4,14 @@ import TabBurger from "./tabBurger";
 import ItemBlock from "./itemBlock";
 import IngridientDetails from "../modal/IngridientDetails";
 import Modal from "../modal/Modal";
-import {TypesData} from "../../utils/types";
-import PropTypes from "prop-types";
+import {BurgerContext} from "../context/burgerContext";
+// import {TypesData} from "../../utils/types";
+// import PropTypes from "prop-types";
 
-function BurgerIngridients({data}) {
+function BurgerIngredients() {
     const [info, setInfo] = React.useState(null);
     const [isClose, setClose] = React.useState(true);
+    const {data} = React.useContext(BurgerContext);
     return (
         <div className={`${inStyle.cards} mr-10`}>
             {!isClose &&
@@ -51,9 +53,9 @@ function BurgerIngridients({data}) {
 
 }
 
-BurgerIngridients.propTypes = {
-    data: PropTypes.arrayOf(TypesData).isRequired,
-};
+// BurgerIngredients.propTypes = {
+//     data: PropTypes.arrayOf(TypesData).isRequired,
+// };
 
-export default BurgerIngridients;
+export default BurgerIngredients;
 

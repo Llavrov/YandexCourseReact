@@ -1,13 +1,16 @@
 import React from 'react';
 import Header from "./header/header";
 import AppStyle from './App.module.css';
-import BurgerIngridients from "./ingridients/burgerIngridients";
+import BurgerIngredients from "./ingridients/burgerIngredients";
 import BurgerConstructor from "./BurgerConstructor/BurgerConstructor";
 import {URL, itemData} from "../utils/data";
+import {BurgerContext} from "./context/burgerContext";
 
 
 function App() {
     const [data, setData] = React.useState(itemData);
+    const [orderInfo, setOrderInfo] = React.useState({});
+
     React.useEffect(() => {
        fetch(URL)
            .then(result => {
@@ -19,13 +22,20 @@ function App() {
     },[]);
 
   return data && (
-    <div className={AppStyle.App}>
-      <Header></Header>
-        <div className={AppStyle.burger}>
-            <BurgerIngridients data={data} ></BurgerIngridients>
-            <BurgerConstructor data={data}></BurgerConstructor>
+      <BurgerContext.Provider value={{
+          data: data,
+          setData: setData,
+          orderInfo: orderInfo,
+          setOrderInfo: setOrderInfo
+      }}>
+        <div className={AppStyle.App}>
+          <Header></Header>
+            <div className={AppStyle.burger}>
+                <BurgerIngredients></BurgerIngredients>
+                <BurgerConstructor></BurgerConstructor>
+            </div>
         </div>
-    </div>
+      </BurgerContext.Provider>
   );
 }
 
