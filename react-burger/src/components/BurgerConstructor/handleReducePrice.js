@@ -1,5 +1,6 @@
 import React from "react";
 import {BurgerContext} from "../context/burgerContext";
+
 export function CounterPriceReducer(state, action) {
     const {data} = React.useContext(BurgerContext);
     switch (action.type) {

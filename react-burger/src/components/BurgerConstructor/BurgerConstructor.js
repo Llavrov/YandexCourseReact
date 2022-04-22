@@ -1,6 +1,6 @@
 import React from 'react';
 import {ConstructorElement, Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import BacketItem from "./BacketItem";
+import BasketItem from "./BasketItem";
 import componentStyle from './BurgerConstructor.module.css';
 import OrderDetails from "../modal/OrderDetails";
 // import {TypesData} from "../../utils/types";
@@ -13,9 +13,14 @@ function BurgerConstructor() {
     const [isClosedPopup, setClosedPopup] = React.useState(true);
     const {data, setData, setOrderInfo} = React.useContext(BurgerContext);
     const initialState = {data: data, count: 0};
-    const [finalCost, dispatchFinalCost] = React.useReducer(CounterPriceReducer, initialState);
+    function init(initialData, initialCount) {
+        return {data: data, count: initialCount};
+    }
+    const [finalCost, dispatchFinalCost] = React.useReducer(CounterPriceReducer, initialState, init);
+    let upperBun = data.find(item => item.type === 'bun');
 
     React.useEffect(() => {
+        upperBun = data.find(item => item.type === 'bun');
         dispatchFinalCost({ type: "COUNT" });
     },[data]);
 
@@ -37,8 +42,9 @@ function BurgerConstructor() {
 
     function handleButtonOrder() {
         setData([
-                ...data.filter(item => item.type == 'bun' && item.name !== 'Краторная булка N-200i'),
-                ...data.filter(item => item.type !== 'bun')]);
+            ...data.filter(item => item.type == 'bun' && item.name !== 'Краторная булка N-200i'),
+            ...data.filter(item => item.type !== 'bun')
+            ]);
         handleGetOrderInfo();
         setClosedPopup(!isClosedPopup);
     }
@@ -54,15 +60,15 @@ function BurgerConstructor() {
                     <ConstructorElement
                         type="top"
                         isLocked={true}
-                        text={`${data.find(item => item.type === 'bun').name} (верх)`}
-                        price={data.find(item => item.type === 'bun').price}
-                        thumbnail={data.find(item => item.type === 'bun').image}
+                        text={`${upperBun.name} (верх)`}
+                        price={upperBun.price}
+                        thumbnail={upperBun.image}
                     />
                 </div>
                 <section className={`${componentStyle.component} pr-4`}>
                     {
                         data.filter(i => i.type === 'main').map((i, index) => {
-                            return (<BacketItem key={`${i._id}`} name={i.name} thumbnail={i.image} price={i.price} />)
+                            return (<BasketItem key={`${i._id}`} name={i.name} thumbnail={i.image} price={i.price} />)
                         })
 
                     }
@@ -71,9 +77,9 @@ function BurgerConstructor() {
                     <ConstructorElement
                         type="bottom"
                         isLocked={true}
-                        text={`${data.find(item => item.type === 'bun').name} (низ)`}
-                        price={data.find(item => item.type === 'bun').price}
-                        thumbnail={data.find(item => item.type === 'bun').image}
+                        text={`${upperBun.name} (низ)`}
+                        price={upperBun.price}
+                        thumbnail={upperBun.image}
                     />
                 </div>
             </div>
