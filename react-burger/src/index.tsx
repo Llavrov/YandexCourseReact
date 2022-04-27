@@ -4,11 +4,18 @@ import './index.css';
 import App from './components/app/App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
-// import {store} from "./redux";
+import {store} from "./redux";
+import {rootReducer} from "./redux/reducers";
+// import {DndProvider} from "react-dnd";
+// import {HTML5Backend} from "react-dnd-html5-backend";
+
+export type RootState = ReturnType<typeof rootReducer>
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <Provider store={store}>
+            <App />
+        </Provider>
     </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,41 +1,33 @@
 import React from 'react';
 import IngridientStyle from './ModalItem.module.css';
-import {TypesData} from "../../utils/types";
-import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
-function IngridientDetails({...props}){
-
+function IngridientDetails(){
+    const ingredientData = useSelector(store => store.ingredient.ingredientData)
     return (
         <>
-            <img className={`${IngridientStyle.image} pb-4`} src={props.image} alt={`${props.image}`}/>
-            <p className="pb-8 text text_type_main-medium">{props.name}</p>
+            <img className={`${IngridientStyle.image} pb-4`} src={ingredientData.image} alt={`${ingredientData.image}`}/>
+            <p className="pb-8 text text_type_main-medium">{ingredientData.name}</p>
             <ul className={`${IngridientStyle.ul} pb-15`}>
                 <li className={`pr-5 ${IngridientStyle.li}`}>
                     <p className="text text_type_main-small pb-2">Калории,ккал</p>
-                    <p className="text text_type_digits-default">{props.calories}</p>
+                    <p className="text text_type_digits-default">{ingredientData.calories}</p>
                 </li>
                 <li className={`pr-5 ${IngridientStyle.li}`}>
                     <p className="text text_type_main-small pb-2">Белки, г</p>
-                    <p className="text text_type_digits-default">{props.proteins}</p>
+                    <p className="text text_type_digits-default">{ingredientData.proteins}</p>
                 </li>
                 <li className={`pr-5 ${IngridientStyle.li}`}>
                     <p className="text text_type_main-small pb-2">Жиры, г</p>
-                    <p className="text text_type_digits-default">{props.fat}</p>
+                    <p className="text text_type_digits-default">{ingredientData.fat}</p>
                 </li>
                 <li className={IngridientStyle.li}>
                     <p className="text text_type_main-small pb-2">Углеводы, г</p>
-                    <p className="text text_type_digits-default">{props.carbohydrates}</p>
+                    <p className="text text_type_digits-default">{ingredientData.carbohydrates}</p>
                 </li>
             </ul>
         </>
     )
 }
-
-IngridientDetails.propTypes = {
-    ...TypesData,
-    isRequired: PropTypes.string,
-    setInfo: PropTypes.func,
-    setClose: PropTypes.func.isRequired
-};
 
 export default IngridientDetails;

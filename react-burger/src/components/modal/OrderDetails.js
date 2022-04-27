@@ -1,11 +1,10 @@
 import React from 'react';
 import DetailsStyle from './OrderDetails.module.css';
-import {BurgerContext} from "../context/burgerContext";
-import { BtnOrderDetails } from "../../images/btn_orderDetails";
+import {useSelector} from "react-redux";
 
 
 function OrderDetails(){
-    const {orderInfo} = React.useContext(BurgerContext);
+    const data = useSelector(store => store.burger.burgersData);
     return (
         <>
             <p className={`${DetailsStyle.OrderNumber} pt-30 pb-8 text text_type_digits-large`}>32590</p>

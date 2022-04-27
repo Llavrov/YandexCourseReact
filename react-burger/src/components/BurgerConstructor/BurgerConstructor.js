@@ -3,49 +3,23 @@ import {ConstructorElement, Button, CurrencyIcon} from '@ya.praktikum/react-deve
 import BasketItem from "./BasketItem";
 import componentStyle from './BurgerConstructor.module.css';
 import OrderDetails from "../modal/OrderDetails";
-// import {TypesData} from "../../utils/types";
-// import PropTypes from "prop-types";
 import Modal from "../modal/Modal";
-import {BurgerContext} from "../context/burgerContext";
-import {CounterPriceReducer} from "./handleReducePrice";
+import {useDispatch, useSelector} from "react-redux";
+import {UPDATE_BURGER_DATA} from "../../redux/actions/burgers";
+import {fetchOrderInfo} from "../../redux/actions/order";
 
 function BurgerConstructor() {
     const [isClosedPopup, setClosedPopup] = React.useState(true);
-    const {data, setData, setOrderInfo} = React.useContext(BurgerContext);
-    const initialState = {data: data, count: 0};
-    function init(initialData, initialCount) {
-        return {data: data, count: initialCount};
-    }
-    const [finalCost, dispatchFinalCost] = React.useReducer(CounterPriceReducer, initialState, init);
+    const data = useSelector(store => store.burger.burgersData);
+    const constructorData = useSelector(store => store.constructorBurger.constructorData)
+    const constructorFinalCoast = useSelector(store => store.constructorBurger.constructorFinalCoast);
+
+    const dispatch = useDispatch();
+
     let upperBun = data.find(item => item.type === 'bun');
 
-    React.useEffect(() => {
-        upperBun = data.find(item => item.type === 'bun');
-        dispatchFinalCost({ type: "COUNT" });
-    },[data]);
-
-    function handleGetOrderInfo() {
-        console.log( data.map(item => item = item._id));
-        fetch('https://norma.nomoreparties.space/api/orders', {
-            method: 'POST',
-            mode: 'cors',
-            body: JSON.stringify({
-                "ingredients": ["609646e4dc916e00276b286e","609646e4dc916e00276b2870"]
-            })
-        })
-            .then(result => {
-                if (result.ok) return result.json();
-                return Promise.reject(`Ошибка ${result.status}`);
-            })
-            .then(res => console.log(res));
-    }
-
     function handleButtonOrder() {
-        setData([
-            ...data.filter(item => item.type == 'bun' && item.name !== 'Краторная булка N-200i'),
-            ...data.filter(item => item.type !== 'bun')
-            ]);
-        handleGetOrderInfo();
+        dispatch(fetchOrderInfo('orders', constructorData))
         setClosedPopup(!isClosedPopup);
     }
 
@@ -67,8 +41,8 @@ function BurgerConstructor() {
                 </div>
                 <section className={`${componentStyle.component} pr-4`}>
                     {
-                        data.filter(i => i.type === 'main').map((i, index) => {
-                            return (<BasketItem key={`${i._id}`} name={i.name} thumbnail={i.image} price={i.price} />)
+                        constructorData.map((i, index) => {
+                            return (<BasketItem key={`${index}${i._id}`} item={i} />)
                         })
 
                     }
@@ -85,7 +59,7 @@ function BurgerConstructor() {
             </div>
             <div className={componentStyle.footerConstructor}>
                 <p className="text text_type_digits-medium pr-10">
-                    {finalCost.count}<CurrencyIcon type="primary" />
+                    {constructorFinalCoast}<CurrencyIcon type="primary" />
                 </p>
                 <Button type="primary" size="large" onClick={handleButtonOrder}>
                     Нажми на меня

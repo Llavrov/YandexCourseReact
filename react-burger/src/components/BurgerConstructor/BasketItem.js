@@ -1,27 +1,30 @@
 import React from 'react';
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import {itemData} from "../../utils/data";
-import PropTypes from 'prop-types';
 import componentStyle from './BurgerConstructor.module.css';
+import {useDispatch, useSelector} from "react-redux";
+import {DELETE_CONSTRUCTOR_ITEM} from "../../redux/actions/constructor";
 
-function BasketItem({name, price, thumbnail}) {
+function BasketItem({item}) {
+    const dispatch = useDispatch();
+    function handleCloseItem() {
+        dispatch({
+            type: DELETE_CONSTRUCTOR_ITEM,
+            item: item,
+        })
+    }
+
     return (
         <div className={componentStyle.backetItem}>
             <span className={'pr-2'}><DragIcon type="primary"/></span>
             <ConstructorElement
-
-                text={name}
-                price={price}
-                thumbnail={thumbnail || itemData[1].image}
+                handleClose={handleCloseItem}
+                text={item.name}
+                price={item.price}
+                thumbnail={item.image}
             />
         </div>
     )
 }
 
-BasketItem.propTypes = {
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    thumbnail: PropTypes.string.isRequired,
-};
 
 export default BasketItem;

@@ -4,50 +4,60 @@ import TabBurger from "./tabBurger";
 import ItemBlock from "./itemBlock";
 import IngridientDetails from "../modal/IngridientDetails";
 import Modal from "../modal/Modal";
-import {BurgerContext} from "../context/burgerContext";
-// import {TypesData} from "../../utils/types";
-// import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
 
 function BurgerIngredients() {
-    const [info, setInfo] = React.useState(null);
-    const [isClose, setClose] = React.useState(true);
-    const {data} = React.useContext(BurgerContext);
+    const modalOpen = useSelector(store => store.ingredient.modalOpen);
+    const data = useSelector(store => store.burger.burgersData);
+    const [current, setCurrent] = React.useState('Булки')
+
+    function handleScrollTab(target) {
+        const item = [
+            [Math.abs(target.currentTarget.querySelector('#main').getClientRects()[0].top), 'Начинка'],
+            [Math.abs(target.currentTarget.querySelector('#Souse').getClientRects()[0].top), 'Соусы'],
+            [Math.abs(target.currentTarget.querySelector('#Bun').getClientRects()[0].top), 'Булки']
+        ].sort((a,b) => a[0] - b[0])
+        setCurrent(String(item[0][1]))
+    }
+
     return (
         <div className={`${inStyle.cards} mr-10`}>
-            {!isClose &&
-            <Modal onClose={setClose} header={'Детали заказа'}  classModal={'mt-10'}>
-                <IngridientDetails {...info}></IngridientDetails>
+            {!modalOpen &&
+            <Modal header={'Детали заказа'}  classModal={'mt-10'}>
+                <IngridientDetails></IngridientDetails>
             </Modal>}
             <p className="text text_type_main-large pb-5 pt-10">
                 Соберите бургер
             </p>
-            <TabBurger></TabBurger>
-            <div  className={`${inStyle.burgers} pt-10`}>
-                <p className="pb-6 text text_type_main-medium">Булки</p>
+            <TabBurger current={current} setCurrent={setCurrent}></TabBurger>
+            {React.useMemo(() =>
+                <div onScroll={handleScrollTab} className={`${inStyle.burgers} pt-10`}>
+                <p id="Bun" className="pb-6 text text_type_main-medium">Булки</p>
                 <div className={inStyle.rolls}>
                     {
                         data.filter(i => i.type === 'bun').map((item, index) => {
-                            return (<ItemBlock setInfo={setInfo} setClose={setClose} {...item} key={`${item._id}`}/>)
+                            return (<ItemBlock {...item} key={`${item._id}`}/>)
                         })
                     }
                 </div>
-                <p className="pb-6 pt-10 text text_type_main-medium">Соусы</p>
+                <p id="Souse" className="pb-6 pt-10 text text_type_main-medium">Соусы</p>
                 <div className={inStyle.rolls}>
                     {
                         data.filter(i => i.type === 'sauce').map((item, index) => {
-                            return (<ItemBlock setInfo={setInfo} setClose={setClose} {...item} key={`${item._id}`}/>)
+                            return (<ItemBlock {...item} key={`${item._id}`}/>)
                         })
                     }
                 </div>
-                <p className="pb-6 pt-10 text text_type_main-medium">Начинка</p>
+                <p id="main" className="pb-6 pt-10 text text_type_main-medium">Начинка</p>
                 <div className={inStyle.rolls}>
                     {
                         data.filter(i => i.type === 'main').map((item, index) => {
-                            return (<ItemBlock setInfo={setInfo} setClose={setClose} {...item} key={`${item._id}`}/>)
+                            return (<ItemBlock {...item} key={`${item._id}`}/>)
                         })
                     }
                 </div>
-            </div>
+            </div>)
+            }
         </div>
     )
 

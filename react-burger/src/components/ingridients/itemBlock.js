@@ -2,10 +2,24 @@ import React from "react";
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import itemStyle from './burgerIngridients.module.css';
 import PropTypes from 'prop-types';
+import {useDispatch, useSelector} from "react-redux";
+import {ADD_CONSTRUCTOR_ITEM} from "../../redux/actions/constructor";
+import {ADD_INGREDIENT_ITEM} from "../../redux/actions/ingredient";
 
 function ItemBlock ({...props}){
+    const dispatch = useDispatch();
+    const constructorData = useSelector(store => store.constructorBurger.constructorData);
+    const count = constructorData.filter(unit => unit._id == props._id).length;
+
     function onClickItem() {
-        props.setInfo(props);
+        dispatch({
+            type: ADD_CONSTRUCTOR_ITEM,
+            item: {...props, index_id: `${count}${props._id}`},
+        })
+        dispatch({
+            type: ADD_INGREDIENT_ITEM,
+            item: props,
+        })
         props.setClose(false);
     }
     return (
@@ -20,13 +34,5 @@ function ItemBlock ({...props}){
         </div>
     )
 }
-
-ItemBlock.propTypes = {
-    image: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    count: PropTypes.number,
-}
-
 
 export default ItemBlock;
