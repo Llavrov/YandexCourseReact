@@ -5,38 +5,63 @@ import componentStyle from './BurgerConstructor.module.css';
 import OrderDetails from "../modal/OrderDetails";
 import Modal from "../modal/Modal";
 import {useDispatch, useSelector} from "react-redux";
-import {UPDATE_BURGER_DATA} from "../../redux/actions/burgers";
 import {fetchOrderInfo} from "../../redux/actions/order";
+import { useDrop } from "react-dnd";
+import {ADD_CONSTRUCTOR_ITEM, SET_CONSTRUCTOR_BUN} from "../../redux/actions/constructor";
 
 function BurgerConstructor() {
-    const [isClosedPopup, setClosedPopup] = React.useState(true);
+    const dispatch = useDispatch();
     const data = useSelector(store => store.burger.burgersData);
+    const constructorBun = useSelector(store => store.constructorBurger.constructorBun);
     const constructorData = useSelector(store => store.constructorBurger.constructorData)
     const constructorFinalCoast = useSelector(store => store.constructorBurger.constructorFinalCoast);
+    const orderOpen = useSelector(store => store.order.orderOpen);
 
-    const dispatch = useDispatch();
+    function handleSetComponentById(itemId) {
+        const itemData = data.find(item => item._id === itemId.id);
+        const count = constructorData.filter(unit => unit._id === itemData._id).length;
+        return {...itemData, index_id: `${count}${itemId.id}`}
+    }
 
-    let upperBun = data.find(item => item.type === 'bun');
+    const [{ isHover }, drop] = useDrop({
+        accept: 'component',
+        collect: monitor => ({
+            isHover: monitor.isOver(),
+        }),
+        drop(itemId) {
+            const itemConstructor = handleSetComponentById(itemId);
+            if (itemConstructor.type === 'bun') {
+                dispatch({
+                    type: SET_CONSTRUCTOR_BUN,
+                    item: itemConstructor,
+                })
+            } else {
+                dispatch({
+                    type: ADD_CONSTRUCTOR_ITEM,
+                    item: itemConstructor,
+                })
+            }
+        }
+    });
 
     function handleButtonOrder() {
         dispatch(fetchOrderInfo('orders', constructorData))
-        setClosedPopup(!isClosedPopup);
     }
 
     return (
         <div className={componentStyle.container}>
-            {!isClosedPopup &&
-            <Modal onClose={setClosedPopup} header={''}>
+            {orderOpen &&
+            <Modal header={''}>
                 <OrderDetails></OrderDetails>
             </Modal>}
-            <div className={`pt-25 pb-10 ${componentStyle.componentsOfBurger}`} >
+            <div ref={drop} className={`pt-25 pb-10 ${componentStyle.componentsOfBurger}`} >
                 <div className={'pl-8'}>
                     <ConstructorElement
                         type="top"
                         isLocked={true}
-                        text={`${upperBun.name} (верх)`}
-                        price={upperBun.price}
-                        thumbnail={upperBun.image}
+                        text={`${constructorBun.name} (верх)`}
+                        price={constructorBun.price}
+                        thumbnail={constructorBun.image}
                     />
                 </div>
                 <section className={`${componentStyle.component} pr-4`}>
@@ -51,9 +76,9 @@ function BurgerConstructor() {
                     <ConstructorElement
                         type="bottom"
                         isLocked={true}
-                        text={`${upperBun.name} (низ)`}
-                        price={upperBun.price}
-                        thumbnail={upperBun.image}
+                        text={`${constructorBun.name} (низ)`}
+                        price={constructorBun.price}
+                        thumbnail={constructorBun.image}
                     />
                 </div>
             </div>
@@ -62,7 +87,7 @@ function BurgerConstructor() {
                     {constructorFinalCoast}<CurrencyIcon type="primary" />
                 </p>
                 <Button type="primary" size="large" onClick={handleButtonOrder}>
-                    Нажми на меня
+                    Оформить заказ
                 </Button>
             </div>
         </div>

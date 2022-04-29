@@ -6,16 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import {store} from "./redux";
 import {rootReducer} from "./redux/reducers";
-// import {DndProvider} from "react-dnd";
-// import {HTML5Backend} from "react-dnd-html5-backend";
+import {DndProvider} from "react-dnd";
+import {HTML5Backend} from "react-dnd-html5-backend";
 
 export type RootState = ReturnType<typeof rootReducer>
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider store={store}>
-            <App />
-        </Provider>
+        <DndProvider backend={HTML5Backend}>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </DndProvider>
     </React.StrictMode>,
   document.getElementById('root')
 );

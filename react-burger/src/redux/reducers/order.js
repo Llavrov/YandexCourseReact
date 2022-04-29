@@ -2,11 +2,12 @@ import {
     GET_ORDER_REQUEST,
     GET_ORDER_SUCCESS,
     GET_ORDER_FAILED,
-    UPDATE_ORDER_DATA
+    SET_ORDER_CLOSE,
 } from "../actions/order";
 
 const initialState = {
     orderData: [],
+    orderOpen: false,
     orderRequest: false,
     orderFailed: false,
 }
@@ -17,7 +18,8 @@ export const orderReducer = (state = initialState, action) => {
         case GET_ORDER_REQUEST:
             return {
                 ...state,
-                orderRequest: true
+                orderRequest: true,
+                orderOpen: true
             }
         case GET_ORDER_SUCCESS:
             return {
@@ -31,10 +33,11 @@ export const orderReducer = (state = initialState, action) => {
                 orderRequest: false,
                 orderFailed: true,
             }
-        case UPDATE_ORDER_DATA:
+        case SET_ORDER_CLOSE:
             return {
                 ...state,
-                orderData: action.orderData
+                orderData: [],
+                orderOpen: false,
             }
         default:
             return state;

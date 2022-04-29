@@ -6,23 +6,29 @@ import ModalOverlay from "./ModalOverlay";
 import PropTypes from "prop-types";
 import {useDispatch} from "react-redux";
 import {DELETE_INGREDIENT_ITEM} from "../../redux/actions/ingredient";
+import {SET_ORDER_CLOSE} from "../../redux/actions/order";
 
 function Modal({...props}) {
     const modalRoot = document.getElementById('reactModal');
     const dispatch = useDispatch()
 
+    function handleCloseModal() {
+        dispatch({type: DELETE_INGREDIENT_ITEM});
+        dispatch({type: SET_ORDER_CLOSE});
+    }
+
     React.useEffect(() => {
-        const handleEscapeKey = (event) => {if (event.key === 'Escape') dispatch({type: DELETE_INGREDIENT_ITEM})}
+        const handleEscapeKey = (event) => {if (event.key === 'Escape') handleCloseModal()}
         document.addEventListener('keydown', handleEscapeKey);
 
         return () => document.removeEventListener('keydown', handleEscapeKey);
-    }, [props.onClose]);
+    }, []);
 
     return ReactDOM.createPortal(
-        <ModalOverlay onClose={props.onClose}>
+        <ModalOverlay onClose={handleCloseModal}>
             <div onClick={(e) => {e.stopPropagation()}}
                  className={ModalStyle.contentBox}>
-                <div onClick={() => dispatch({type: DELETE_INGREDIENT_ITEM})} className={`${ModalStyle.closeBtn} mr-10 mt-15`}>
+                <div onClick={handleCloseModal} className={`${ModalStyle.closeBtn} mr-10 mt-15`}>
                     <CloseIcon type="primary"/>
                 </div>
                 <div className={ModalStyle.container}>
@@ -38,7 +44,6 @@ function Modal({...props}) {
 }
 Modal.propTypes = {
     children: PropTypes.object.isRequired,
-    onClose: PropTypes.func.isRequired,
     header: PropTypes.string,
     classModal: PropTypes.string,
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import componentStyle from './BurgerConstructor.module.css';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {DELETE_CONSTRUCTOR_ITEM} from "../../redux/actions/constructor";
 
 function BasketItem({item}) {

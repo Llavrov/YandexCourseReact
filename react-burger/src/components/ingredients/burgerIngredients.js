@@ -2,7 +2,7 @@ import React from 'react';
 import inStyle from './burgerIngridients.module.css';
 import TabBurger from "./tabBurger";
 import ItemBlock from "./itemBlock";
-import IngridientDetails from "../modal/IngridientDetails";
+import IngredientDetails from "../modal/IngredientDetails";
 import Modal from "../modal/Modal";
 import {useSelector} from "react-redux";
 
@@ -23,8 +23,8 @@ function BurgerIngredients() {
     return (
         <div className={`${inStyle.cards} mr-10`}>
             {!modalOpen &&
-            <Modal header={'Детали заказа'}  classModal={'mt-10'}>
-                <IngridientDetails></IngridientDetails>
+            <Modal header={'Детали ингредиента'}  classModal={'mt-10'}>
+                <IngredientDetails></IngredientDetails>
             </Modal>}
             <p className="text text_type_main-large pb-5 pt-10">
                 Соберите бургер

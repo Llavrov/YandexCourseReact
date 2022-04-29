@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "../header/header";
 import AppStyle from './App.module.css';
-import BurgerIngredients from "../ingridients/burgerIngredients";
+import BurgerIngredients from "../ingredients/burgerIngredients";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 import {fetchBurgerData} from "../../redux/actions/burgers";
 import {useDispatch, useSelector} from "react-redux";

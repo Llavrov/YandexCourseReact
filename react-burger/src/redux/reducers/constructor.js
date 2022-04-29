@@ -6,7 +6,10 @@ import {
 
 const initialState = {
     constructorData: [],
-    constructorBun: '',
+    constructorBun: {
+        price: 0,
+        name: 'Testy bun'
+    },
     constructorLength: 0,
     constructorFinalCoast: 0
 }
@@ -36,8 +39,8 @@ export const constructorReducer = (state = initialState, action) => {
         case SET_CONSTRUCTOR_BUN:
             return {
                 ...state,
-                constructorBun: action.item.name,
-                constructorFinalCoast: state.constructorFinalCoast - action.item.price
+                constructorFinalCoast: state.constructorFinalCoast - state.constructorBun.price + action.item.price,
+                constructorBun: action.item,
             }
         default:
             return state;

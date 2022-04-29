@@ -2,7 +2,7 @@ import React from 'react';
 import IngridientStyle from './ModalItem.module.css';
 import {useSelector} from "react-redux";
 
-function IngridientDetails(){
+function IngredientDetails(){
     const ingredientData = useSelector(store => store.ingredient.ingredientData)
     return (
         <>
@@ -30,4 +30,4 @@ function IngridientDetails(){
     )
 }
 
-export default IngridientDetails;
+export default IngredientDetails;

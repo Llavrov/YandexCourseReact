@@ -8,7 +8,6 @@ const composeEnhancers =
         : compose;
 
 const enhancer = composeEnhancers(applyMiddleware(thunk));
-const initState = {ingredients: []}
 
 export const store = createStore(
     rootReducer,

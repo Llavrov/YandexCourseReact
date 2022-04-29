@@ -1,10 +1,10 @@
 import React from 'react';
 import DetailsStyle from './OrderDetails.module.css';
-import {useSelector} from "react-redux";
+// import {useSelector} from "react-redux";
 
 
 function OrderDetails(){
-    const data = useSelector(store => store.burger.burgersData);
+    // const data = useSelector(store => store.burger.burgersData);
     return (
         <>
             <p className={`${DetailsStyle.OrderNumber} pt-30 pb-8 text text_type_digits-large`}>32590</p>

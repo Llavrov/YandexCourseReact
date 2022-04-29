@@ -41,6 +41,11 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    border-radius: 10px;
+}
+
+.dragActive {
+    background: #1C1C21;
 }
 
 .image {
