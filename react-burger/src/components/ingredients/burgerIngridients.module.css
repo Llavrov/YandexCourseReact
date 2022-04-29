@@ -67,3 +67,16 @@
     max-width: 272px;
     text-align: center;
 }
+
+.count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    background: rgba(76, 76, 255, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

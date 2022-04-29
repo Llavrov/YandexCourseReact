@@ -1,7 +1,23 @@
 .container, .componentsOfBurger {
     max-height: 85%;
+    min-height: 300px;
     position: relative;
 }
+
+/*.container {*/
+/*    width: 50%;*/
+/*}*/
+
+.emptyText {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.active {
+    background: #8585ad;
+}
+
 .componentsOfBurger{
     display: flex;
     flex-direction: column;

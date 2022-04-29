@@ -1,4 +1,5 @@
 import {URL} from "../../utils/data";
+import {checkResponse} from "../../utils/checkResponse";
 
 export const GET_ORDER_REQUEST = 'GET_ORDER_REQUEST';
 export const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
@@ -14,15 +15,10 @@ export const fetchOrderInfo = (link = 'orders', ingredients) => (dispatch) => {
             "ingredients": ingredients
         })
     })
-        .then(result => {
-            console.log(result);
-            return result.json();
-            dispatch({ type: GET_ORDER_FAILED });
-            return Promise.reject(`Ошибка ${result.status}`);
-        })
+        .then(checkResponse)
         .then((result) =>  dispatch({
             type: GET_ORDER_SUCCESS,
             burgersData: result.data
         }))
-        .catch(e =>  Promise.reject(`Ошибка catch ${e}`));
+        .catch(e =>  dispatch({ type: GET_ORDER_FAILED }));
 }

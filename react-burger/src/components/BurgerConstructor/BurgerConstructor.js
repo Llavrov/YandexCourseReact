@@ -16,7 +16,7 @@ function BurgerConstructor() {
     const constructorData = useSelector(store => store.constructorBurger.constructorData)
     const constructorFinalCoast = useSelector(store => store.constructorBurger.constructorFinalCoast);
     const orderOpen = useSelector(store => store.order.orderOpen);
-
+    console.log(constructorData);
     function handleSetComponentById(itemId) {
         const itemData = data.find(item => item._id === itemId.id);
         const count = constructorData.filter(unit => unit._id === itemData._id).length;
@@ -45,7 +45,9 @@ function BurgerConstructor() {
     });
 
     function handleButtonOrder() {
-        dispatch(fetchOrderInfo('orders', constructorData))
+        let orders = [...constructorData.map(item => item = item._id), constructorBun._id];
+        console.log(orders);
+        dispatch(fetchOrderInfo('orders', orders))
     }
 
     return (
@@ -55,7 +57,12 @@ function BurgerConstructor() {
                 <OrderDetails></OrderDetails>
             </Modal>}
             <div ref={drop} className={`pt-25 pb-10 ${componentStyle.componentsOfBurger}`} >
-                <div className={'pl-8'}>
+                {constructorBun.isEmpty && !constructorData.length &&
+                    <p className={`${componentStyle.emptyText} pt-20 text text_type_main-medium`}>
+                        Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа
+                    </p>
+                }
+                {!constructorBun.isEmpty && (<div className={'pl-8'}>
                     <ConstructorElement
                         type="top"
                         isLocked={true}
@@ -63,7 +70,7 @@ function BurgerConstructor() {
                         price={constructorBun.price}
                         thumbnail={constructorBun.image}
                     />
-                </div>
+                </div>)}
                 <section className={`${componentStyle.component} pr-4`}>
                     {
                         constructorData.map((i, index) => {
@@ -72,7 +79,7 @@ function BurgerConstructor() {
 
                     }
                 </section>
-                <div className={'pl-8'}>
+                {!constructorBun.isEmpty && (<div className={'pl-8'}>
                     <ConstructorElement
                         type="bottom"
                         isLocked={true}
@@ -80,7 +87,7 @@ function BurgerConstructor() {
                         price={constructorBun.price}
                         thumbnail={constructorBun.image}
                     />
-                </div>
+                </div>)}
             </div>
             <div className={componentStyle.footerConstructor}>
                 <p className="text text_type_digits-medium pr-10">

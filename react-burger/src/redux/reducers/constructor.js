@@ -8,7 +8,8 @@ const initialState = {
     constructorData: [],
     constructorBun: {
         price: 0,
-        name: 'Testy bun'
+        name: 'Testy bun',
+        isEmpty: true,
     },
     constructorLength: 0,
     constructorFinalCoast: 0
@@ -41,6 +42,7 @@ export const constructorReducer = (state = initialState, action) => {
                 ...state,
                 constructorFinalCoast: state.constructorFinalCoast - state.constructorBun.price + action.item.price,
                 constructorBun: action.item,
+                isEmpty: false
             }
         default:
             return state;

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import itemStyle from './burgerIngridients.module.css';
+import PropTypes from "prop-types";
 
 function TabBurger({current = 'Булки', setCurrent}) {
 
@@ -17,6 +18,11 @@ function TabBurger({current = 'Булки', setCurrent}) {
             </Tab>
         </div>
     )
+}
+
+TabBurger.propTypes = {
+    current: PropTypes.string,
+    setCurrent: PropTypes.func
 }
 
 export default TabBurger;
