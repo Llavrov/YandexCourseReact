@@ -1,23 +1,19 @@
 {
-  "files": {
-    "main.css": "/YandexCourseReact/static/css/main.30b1674d.css",
-    "main.js": "/YandexCourseReact/static/js/main.23ad6464.js",
-    "static/js/787.da77299e.chunk.js": "/YandexCourseReact/static/js/787.da77299e.chunk.js",
-    "static/media/JetBrainsMono-Italic.woff2": "/YandexCourseReact/static/media/JetBrainsMono-Italic.ae11e7508382c3e75c6b.woff2",
-    "static/media/JetBrainsMono-Bold.woff2": "/YandexCourseReact/static/media/JetBrainsMono-Bold.c232d532ea5a5189a278.woff2",
-    "static/media/JetBrainsMono-ExtraLight.woff2": "/YandexCourseReact/static/media/JetBrainsMono-ExtraLight.e6b4022eef9e31307814.woff2",
-    "static/media/JetBrainsMono-Bold.woff": "/YandexCourseReact/static/media/JetBrainsMono-Bold.3914674f1cb2335acf26.woff",
-    "static/media/JetBrainsMono-Regular.woff": "/YandexCourseReact/static/media/JetBrainsMono-Regular.f52bee61d00ce995b89f.woff",
-    "static/media/JetBrainsMono-Regular.woff2": "/YandexCourseReact/static/media/JetBrainsMono-Regular.b60380891bcf2eb241ca.woff2",
-    "static/media/iceland.woff": "/YandexCourseReact/static/media/iceland.77ad7fc2baffd9305538.woff",
-    "static/media/iceland.woff2": "/YandexCourseReact/static/media/iceland.4ae67a017a5ff82bbbb7.woff2",
-    "index.html": "/YandexCourseReact/index.html",
-    "main.30b1674d.css.map": "/YandexCourseReact/static/css/main.30b1674d.css.map",
-    "main.23ad6464.js.map": "/YandexCourseReact/static/js/main.23ad6464.js.map",
-    "787.da77299e.chunk.js.map": "/YandexCourseReact/static/js/787.da77299e.chunk.js.map"
-  },
-  "entrypoints": [
-    "static/css/main.30b1674d.css",
-    "static/js/main.23ad6464.js"
-  ]
+  "main.css": "/YandexCourseReact/static/css/main.678e3359.chunk.css",
+  "main.js": "/YandexCourseReact/static/js/main.449ed084.chunk.js",
+  "main.js.map": "/YandexCourseReact/static/js/main.449ed084.chunk.js.map",
+  "static/js/1.656a7a34.chunk.js": "/YandexCourseReact/static/js/1.656a7a34.chunk.js",
+  "static/js/1.656a7a34.chunk.js.map": "/YandexCourseReact/static/js/1.656a7a34.chunk.js.map",
+  "static/css/2.f58dc67f.chunk.css": "/YandexCourseReact/static/css/2.f58dc67f.chunk.css",
+  "static/js/2.b4806b0d.chunk.js": "/YandexCourseReact/static/js/2.b4806b0d.chunk.js",
+  "static/js/2.b4806b0d.chunk.js.map": "/YandexCourseReact/static/js/2.b4806b0d.chunk.js.map",
+  "runtime~main.js": "/YandexCourseReact/static/js/runtime~main.2e7236a5.js",
+  "runtime~main.js.map": "/YandexCourseReact/static/js/runtime~main.2e7236a5.js.map",
+  "static/media/index.css": "/YandexCourseReact/static/media/JetBrainsMono-Bold.84617200.woff2",
+  "static/media/fonts.css": "/YandexCourseReact/static/media/iceland.df042be2.woff",
+  "static/css/main.678e3359.chunk.css.map": "/YandexCourseReact/static/css/main.678e3359.chunk.css.map",
+  "static/css/2.f58dc67f.chunk.css.map": "/YandexCourseReact/static/css/2.f58dc67f.chunk.css.map",
+  "index.html": "/YandexCourseReact/index.html",
+  "precache-manifest.494c0120ba20466e415886ddf64d659f.js": "/YandexCourseReact/precache-manifest.494c0120ba20466e415886ddf64d659f.js",
+  "service-worker.js": "/YandexCourseReact/service-worker.js"
 }
