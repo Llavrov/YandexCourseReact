@@ -10,15 +10,15 @@ export const fetchOrderInfo = (link = 'orders', ingredients) => (dispatch) => {
     dispatch({ type: GET_ORDER_REQUEST })
     fetch(`${URL}${link}`, {
         method: 'POST',
-        mode: 'cors',
-        body: JSON.stringify({
-            "ingredients": ingredients
-        })
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ingredients })
     })
         .then(checkResponse)
         .then((result) =>  dispatch({
             type: GET_ORDER_SUCCESS,
-            burgersData: result.data
+            orderData: result
         }))
         .catch(e =>  dispatch({ type: GET_ORDER_FAILED }));
 }

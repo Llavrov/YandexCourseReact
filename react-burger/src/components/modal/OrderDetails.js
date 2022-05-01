@@ -1,13 +1,10 @@
 import React from 'react';
 import DetailsStyle from './OrderDetails.module.css';
-// import {useSelector} from "react-redux";
 
-
-function OrderDetails(){
-    // const data = useSelector(store => store.burger.burgersData);
+function OrderDetails({orderNumber}){
     return (
         <>
-            <p className={`${DetailsStyle.OrderNumber} pt-30 pb-8 text text_type_digits-large`}>32590</p>
+            <p className={`${DetailsStyle.OrderNumber} pt-30 pb-8 text text_type_digits-large`}>{orderNumber}</p>
             <p className="pb-15 text text_type_main-medium">идентификатор заказа</p>
             <div>
                 <svg width="107" height="102" viewBox="0 0 107 102" fill="none" xmlns="http://www.w3.org/2000/svg">

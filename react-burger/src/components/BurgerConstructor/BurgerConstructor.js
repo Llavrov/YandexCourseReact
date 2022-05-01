@@ -8,14 +8,15 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchOrderInfo, SET_ORDER_CLOSE} from "../../redux/actions/order";
 import { useDrop } from "react-dnd";
 import {ADD_CONSTRUCTOR_ITEM, SET_CONSTRUCTOR_BUN, UPDATE_CONSTRUCTOR_LIST} from "../../redux/actions/constructor";
-import {DELETE_INGREDIENT_ITEM} from "../../redux/actions/ingredient";
 
 function BurgerConstructor() {
     const dispatch = useDispatch();
-    const constructorBun = useSelector(store => store.constructorBurger.constructorBun);
-    const constructorData = useSelector(store => store.constructorBurger.constructorData)
-    const constructorFinalCoast = useSelector(store => store.constructorBurger.constructorFinalCoast);
-    const orderOpen = useSelector(store => store.order.orderOpen);
+    const {constructorBun, constructorData, constructorFinalCoast} = useSelector(store => store.constructorBurger);
+    const {orderData: orderDetails} = useSelector(store => store.order);
+    const {success: orderSuccess } = useSelector(store => store.order.orderData);
+    console.log(orderSuccess)
+    // const orderDetails = useSelector(store => store.order.orderData);
+
     function handleSetComponentById(props) {
         const count = constructorData.filter(unit => unit._id === props._id).length;
         return {...props, index_id: `${count}${props._id}`}
@@ -61,9 +62,9 @@ function BurgerConstructor() {
 
     return (
         <div className={componentStyle.container}>
-            {orderOpen &&
+            {orderSuccess &&
             <Modal header={''} onClose={() => dispatch({type: SET_ORDER_CLOSE})}>
-                <OrderDetails></OrderDetails>
+                <OrderDetails orderNumber={orderDetails.order.number}></OrderDetails>
             </Modal>}
             <div ref={drop} className={`pt-25 pb-10 ${componentStyle.componentsOfBurger}`} >
                 {constructorBun.isEmpty && !constructorData.length &&

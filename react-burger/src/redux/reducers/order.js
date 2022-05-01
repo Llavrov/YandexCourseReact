@@ -6,7 +6,13 @@ import {
 } from "../actions/order";
 
 const initialState = {
-    orderData: [],
+    orderData: {
+        name: 'Custom burger',
+        order: {
+            number: 32145,
+        },
+        success: false
+    },
     orderOpen: false,
     orderRequest: false,
     orderFailed: false,
@@ -36,7 +42,7 @@ export const orderReducer = (state = initialState, action) => {
         case SET_ORDER_CLOSE:
             return {
                 ...state,
-                orderData: [],
+                orderData: initialState.orderData,
                 orderOpen: false,
             }
         default:
