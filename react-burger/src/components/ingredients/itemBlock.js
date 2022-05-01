@@ -11,11 +11,10 @@ function ItemBlock ({...props}){
     const constructorData = useSelector(store => store.constructorBurger.constructorData);
     const constructorBun = useSelector(store => store.constructorBurger.constructorBun);
     const countItems = constructorBun._id === props._id ? 1 : constructorData.filter(item => item._id === props._id).length;
-    const id = props._id;
 
     const [{ isDrag }, drag] = useDrag({
-        type: "component",
-        item: { id },
+        type: "Ingredient",
+        item: { ...props },
         collect: monitor => ({
             isDrag: monitor.isDragging()
         })
@@ -24,7 +23,7 @@ function ItemBlock ({...props}){
     function onClickItem() {
         dispatch({
             type: ADD_INGREDIENT_ITEM,
-            item: props,
+            item: {...props},
         })
     }
     return (

@@ -1,7 +1,8 @@
 import {
     ADD_CONSTRUCTOR_ITEM,
     DELETE_CONSTRUCTOR_ITEM,
-    SET_CONSTRUCTOR_BUN
+    SET_CONSTRUCTOR_BUN,
+    UPDATE_CONSTRUCTOR_LIST
 }  from "../actions/constructor";
 
 const initialState = {
@@ -43,6 +44,11 @@ export const constructorReducer = (state = initialState, action) => {
                 constructorFinalCoast: state.constructorFinalCoast - state.constructorBun.price + action.item.price,
                 constructorBun: action.item,
                 isEmpty: false
+            }
+        case UPDATE_CONSTRUCTOR_LIST:
+            return {
+                ...state,
+                constructorData: action.constructorData
             }
         default:
             return state;

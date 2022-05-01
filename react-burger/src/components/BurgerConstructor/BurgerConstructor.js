@@ -5,31 +5,40 @@ import componentStyle from './BurgerConstructor.module.css';
 import OrderDetails from "../modal/OrderDetails";
 import Modal from "../modal/Modal";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchOrderInfo} from "../../redux/actions/order";
+import {fetchOrderInfo, SET_ORDER_CLOSE} from "../../redux/actions/order";
 import { useDrop } from "react-dnd";
-import {ADD_CONSTRUCTOR_ITEM, SET_CONSTRUCTOR_BUN} from "../../redux/actions/constructor";
+import {ADD_CONSTRUCTOR_ITEM, SET_CONSTRUCTOR_BUN, UPDATE_CONSTRUCTOR_LIST} from "../../redux/actions/constructor";
+import {DELETE_INGREDIENT_ITEM} from "../../redux/actions/ingredient";
 
 function BurgerConstructor() {
     const dispatch = useDispatch();
-    const data = useSelector(store => store.burger.burgersData);
     const constructorBun = useSelector(store => store.constructorBurger.constructorBun);
     const constructorData = useSelector(store => store.constructorBurger.constructorData)
     const constructorFinalCoast = useSelector(store => store.constructorBurger.constructorFinalCoast);
     const orderOpen = useSelector(store => store.order.orderOpen);
-    console.log(constructorData);
-    function handleSetComponentById(itemId) {
-        const itemData = data.find(item => item._id === itemId.id);
-        const count = constructorData.filter(unit => unit._id === itemData._id).length;
-        return {...itemData, index_id: `${count}${itemId.id}`}
+    function handleSetComponentById(props) {
+        const count = constructorData.filter(unit => unit._id === props._id).length;
+        return {...props, index_id: `${count}${props._id}`}
     }
 
+    const moveCard = React.useCallback((dragIndex, hoverIndex) => {
+        const dragCard = constructorData[dragIndex];
+        const newCards = [...constructorData]
+        newCards.splice(dragIndex, 1)
+        newCards.splice(hoverIndex, 0, dragCard)
+        dispatch({
+            type: UPDATE_CONSTRUCTOR_LIST,
+            constructorData: newCards,
+        })
+    }, [constructorData, dispatch]);
+
     const [{ isHover }, drop] = useDrop({
-        accept: 'component',
+        accept: 'Ingredient',
         collect: monitor => ({
             isHover: monitor.isOver(),
         }),
-        drop(itemId) {
-            const itemConstructor = handleSetComponentById(itemId);
+        drop(propsItem) {
+            const itemConstructor = handleSetComponentById(propsItem);
             if (itemConstructor.type === 'bun') {
                 dispatch({
                     type: SET_CONSTRUCTOR_BUN,
@@ -53,7 +62,7 @@ function BurgerConstructor() {
     return (
         <div className={componentStyle.container}>
             {orderOpen &&
-            <Modal header={''}>
+            <Modal header={''} onClose={() => dispatch({type: SET_ORDER_CLOSE})}>
                 <OrderDetails></OrderDetails>
             </Modal>}
             <div ref={drop} className={`pt-25 pb-10 ${componentStyle.componentsOfBurger}`} >
@@ -64,6 +73,7 @@ function BurgerConstructor() {
                 }
                 {!constructorBun.isEmpty && (<div className={'pl-8'}>
                     <ConstructorElement
+
                         type="top"
                         isLocked={true}
                         text={`${constructorBun.name} (верх)`}
@@ -74,7 +84,10 @@ function BurgerConstructor() {
                 <section className={`${componentStyle.component} pr-4`}>
                     {
                         constructorData.map((i, index) => {
-                            return (<BasketItem key={`${index}${i._id}`} item={i} />)
+                            return (<BasketItem moveCard={moveCard} index={index} key={`${index}${i._id}`} item={{
+                                ...i,
+                                index: index
+                            }} />)
                         })
 
                     }

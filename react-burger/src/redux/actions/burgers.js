@@ -1,5 +1,4 @@
 import {URL} from "../../utils/data";
-import {SET_CONSTRUCTOR_BUN} from "./constructor";
 import {checkResponse} from "../../utils/checkResponse";
 
 export const GET_BURGER_REQUEST = 'GET_BURGER_REQUEST';
