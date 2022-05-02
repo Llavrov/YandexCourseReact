@@ -1,0 +1,61 @@
+.container, .componentsOfBurger {
+    max-height: 85%;
+    min-height: 300px;
+    position: relative;
+}
+
+/*.container {*/
+/*    width: 50%;*/
+/*}*/
+
+.emptyText {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.active {
+    background: #8585ad;
+}
+
+.componentsOfBurger{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: right;
+}
+.component {
+    overflow-y: scroll;
+    max-height: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.component::-webkit-scrollbar {
+    width: 8px;
+}
+
+.component::-webkit-scrollbar-track {
+    background: rgba(47, 47, 55, 1);
+}
+.component::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 6px rgba(133, 133, 173, 1);
+}
+@media (min-width: 1450px) {
+    .component {
+        min-height: 80%;
+    }
+}
+
+.footerConstructor {
+    float: right;
+    display: flex;
+    align-items: center;
+}
+
+.backetItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
