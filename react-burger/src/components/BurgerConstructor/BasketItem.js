@@ -4,6 +4,8 @@ import componentStyle from './BurgerConstructor.module.css';
 import {useDispatch} from "react-redux";
 import {DELETE_CONSTRUCTOR_ITEM} from "../../redux/actions/constructor";
 import {useDrag, useDrop} from "react-dnd";
+import {TypesData} from "../../utils/types";
+import PropTypes from "prop-types";
 
 function BasketItem({item, moveCard, index}) {
     const dispatch = useDispatch();
@@ -78,6 +80,12 @@ function BasketItem({item, moveCard, index}) {
             />
         </div>
     )
+}
+
+BasketItem.propTypes = {
+    item: TypesData,
+    moveCard: PropTypes.func,
+    index: PropTypes.number
 }
 
 

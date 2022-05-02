@@ -1,5 +1,7 @@
 import React from 'react';
 import DetailsStyle from './OrderDetails.module.css';
+import PropTypes from "prop-types";
+import BasketItem from "../BurgerConstructor/BasketItem";
 
 function OrderDetails({orderNumber}){
     return (
@@ -32,6 +34,11 @@ function OrderDetails({orderNumber}){
             <p className={`${DetailsStyle.pColor} pb-30 text text_type_main-small`} >дождитесь готовности заказа на орбитальной станции</p>
         </>
     )
+}
+
+
+BasketItem.propTypes = {
+    orderNumber: PropTypes.number
 }
 
 export default OrderDetails;
