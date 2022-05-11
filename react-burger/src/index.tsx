@@ -8,6 +8,7 @@ import {store} from "./redux";
 import {rootReducer} from "./redux/reducers";
 import {DndProvider} from "react-dnd";
 import {HTML5Backend} from "react-dnd-html5-backend";
+import {BrowserRouter as Router} from "react-router-dom";
 
 export type RootState = ReturnType<typeof rootReducer>
 
@@ -15,7 +16,9 @@ ReactDOM.render(
     <React.StrictMode>
         <DndProvider backend={HTML5Backend}>
             <Provider store={store}>
-                <App />
+                <Router>
+                    <App />
+                </Router>
             </Provider>
         </DndProvider>
     </React.StrictMode>,

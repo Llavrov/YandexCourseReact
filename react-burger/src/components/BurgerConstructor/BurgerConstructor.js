@@ -31,7 +31,7 @@ function BurgerConstructor() {
         })
     }, [constructorData, dispatch]);
 
-    const [{ isHover }, drop] = useDrop({
+    const [ drop] = useDrop({
         accept: 'Ingredient',
         collect: monitor => ({
             isHover: monitor.isOver(),

@@ -55,6 +55,7 @@ function BasketItem({item, moveCard, index}) {
             isDragging: monitor.isDragging(),
         }),
     });
+
     const opacity = isDragging ? 0 : 1;
     if (item.type !== 'bun') {
         drag(drop(ref));
