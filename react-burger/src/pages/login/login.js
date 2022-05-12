@@ -2,37 +2,28 @@ import React from 'react';
 import {Input, PasswordInput, Button} from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './loginStyles.module.css';
 import {useDispatch, useSelector} from "react-redux";
-import {fetchAuthorization} from "../../redux/actions/authorization";
+import {fetchAuthorization} from "../../redux/actions/user";
 import {Redirect} from "react-router-dom";
 
 function Login() {
-    const [emailValue, setEmailValue] = React.useState('bob@example.com')
-    const onInputChange = e => {setEmailValue(e.target.value)}
-    const [passValue, setPassValue] = React.useState('password')
-    const onPassChange = e => {setPassValue(e.target.value)}
+    const [emailValue, setEmailValue] = React.useState('levlevlavrov@gmail.com')
+    const [passValue, setPassValue] = React.useState('Lion2020')
 
     const dispatch = useDispatch();
-    const { getUser, ...auth } = useSelector(store => store.authorization)
+    const { getUser } = useSelector(store => store.user)
 
     function handleLoginClick() {
-        console.log(JSON.stringify({
-            "email": emailValue,
-            "password": passValue,
-        }));
         dispatch(fetchAuthorization('auth/login', {
             "email": emailValue,
             "password": passValue,
         }));
-        console.log(auth);
     }
 
     if( getUser() ) {
-        console.log(getUser())
         return <Redirect to={{
             pathname: '/'
         }}/>
     }
-
 
     return (
         <div className={styles.container}>
@@ -40,10 +31,10 @@ function Login() {
                 Вход
             </p>
             <div className="pb-6">
-                <Input type="email" size={'default'} onChange={onInputChange} value={emailValue} name={'email'} />
+                <Input type="email" size={'default'} onChange={e => setEmailValue(e.target.value)} value={emailValue} name={'email'} />
             </div>
             <div className="pb-6">
-                <PasswordInput onChange={onPassChange} value={passValue} name={'password'} />
+                <PasswordInput onChange={e => setPassValue(e.target.value)} value={passValue} name={'password'} />
             </div>
             <div className="pb-20">
                 <Button type="primary" size="large" onClick={handleLoginClick}>

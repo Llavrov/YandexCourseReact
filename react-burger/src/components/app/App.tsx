@@ -10,40 +10,47 @@ import {Route, Switch} from "react-router-dom";
 import Login from "../../pages/login/login";
 import ProtectedRoute from "../protectedRoute/protectedRoute";
 import Register from "../../pages/register/register";
+import {checkUserAuth} from "../../redux/actions/user";
 
 
 function App() {
     const dispatch = useDispatch();
-    const data = useSelector((store: RootState) => {
+    const burgersData = useSelector((store: RootState) => {
         return store.burger.burgersData;
     });
 
     React.useEffect(() => {
+        dispatch(checkUserAuth());
         dispatch(fetchBurgerData('ingredients'))
     },[]);
 
-    return !!data.length ?
-        (<div className={AppStyle.App}>
+    return (
+        <div className={AppStyle.App}>
             <Header />
             <Switch>
                 <ProtectedRoute path={'/'} exact={true}>
-                    <div className={AppStyle.burger}>
-                        <BurgerIngredients></BurgerIngredients>
-                        <BurgerConstructor></BurgerConstructor>
-                    </div>
+                    {!!burgersData.length
+                        ? (
+                            <div className={AppStyle.burger}>
+                                <BurgerIngredients></BurgerIngredients>
+                                <BurgerConstructor></BurgerConstructor>
+                            </div>
+                        ) : (
+                            <></>
+                        )}
                 </ProtectedRoute>
-                <Route path={'/login'} exact={true}>
+                <ProtectedRoute onlyUnAuth={true} path={'/login'} exact={true}>
                     <Login></Login>
-                </Route>
-                <Route path={'/register'} exact={true}>
+                </ProtectedRoute>
+                <ProtectedRoute onlyUnAuth={true} path={'/register'} exact={true}>
                     <Register></Register>
-                </Route>
-                <Route path={'/forgot-password'} exact={true}>
+                </ProtectedRoute>
+                <ProtectedRoute onlyUnAuth={true} path={'/forgot-password'} exact={true}>
 
-                </Route>
-                <Route path={'/reset-password'} exact={true}>
+                </ProtectedRoute>
+                <ProtectedRoute onlyUnAuth={true} path={'/reset-password'} exact={true}>
 
-                </Route>
+                </ProtectedRoute>
                 <ProtectedRoute path={'/profile'} exact={true}>
 
                 </ProtectedRoute>
@@ -54,8 +61,8 @@ function App() {
 
                 </Route>
             </Switch>
-        </div>)
-        : <></>
+        </div>
+    )
 }
 
 export default App;

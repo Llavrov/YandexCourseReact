@@ -31,7 +31,7 @@ function BurgerConstructor() {
         })
     }, [constructorData, dispatch]);
 
-    const [ drop] = useDrop({
+    const [{isHover}, drop] = useDrop({
         accept: 'Ingredient',
         collect: monitor => ({
             isHover: monitor.isOver(),
@@ -54,7 +54,6 @@ function BurgerConstructor() {
 
     function handleButtonOrder() {
         let orders = [...constructorData.map(item => item = item._id), constructorBun._id];
-        console.log(orders);
         dispatch(fetchOrderInfo('orders', orders))
     }
 
@@ -66,9 +65,9 @@ function BurgerConstructor() {
             </Modal>}
             <div ref={drop} className={`pt-25 pb-10 ${componentStyle.componentsOfBurger}`} >
                 {constructorBun.isEmpty && !constructorData.length &&
-                    <p className={`${componentStyle.emptyText} pt-20 text text_type_main-medium`}>
-                        Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа
-                    </p>
+                <p className={`${componentStyle.emptyText} pt-20 text text_type_main-medium`}>
+                    Пожалуйста, перенесите сюда булку и ингредиенты для создания заказа
+                </p>
                 }
                 {!constructorBun.isEmpty && (<div className={'pl-8'}>
                     <ConstructorElement

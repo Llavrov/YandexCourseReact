@@ -3,7 +3,7 @@ import {Input, PasswordInput, Button} from '@ya.praktikum/react-developer-burger
 import styles from './registerStyles.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from "react-router-dom";
-import {fetchRegistration} from "../../redux/actions/registration";
+import {fetchRegistration} from "../../redux/actions/user";
 
 function Register() {
     const [emailValue, setEmailValue] = React.useState('bob@example.com')
@@ -11,7 +11,7 @@ function Register() {
     const [passValue, setPassValue] = React.useState('password')
 
     const dispatch = useDispatch();
-    const { getUser } = useSelector(store => store.registration)
+    const { getUser } = useSelector(store => store.user)
 
     function handleLoginClick() {
         dispatch(fetchRegistration('auth/register', {
