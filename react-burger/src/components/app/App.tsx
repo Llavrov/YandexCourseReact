@@ -14,6 +14,7 @@ import {checkUserAuth} from "../../redux/actions/user";
 import ResetPassword from "../../pages/reset-password/reset-password";
 import ForgotPassword from "../../pages/forgot-password/forgot-password";
 import Profile from "../../pages/profile/profile";
+import IngredientDetails from "../modal/IngredientDetails";
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
         <div className={AppStyle.App}>
             <Header />
             <Switch>
-                <ProtectedRoute path={'/'} exact={true}>
+                <ProtectedRoute path={'/YandexCourseReact/'} exact={true}>
                     {!!burgersData.length
                         ? (
                             <div className={AppStyle.burger}>
@@ -42,23 +43,25 @@ function App() {
                             <></>
                         )}
                 </ProtectedRoute>
-                <ProtectedRoute onlyUnAuth={true} path={'/login'} exact={true}>
+                <ProtectedRoute onlyUnAuth={true} path={'/YandexCourseReact/login'} exact={true}>
                     <Login></Login>
                 </ProtectedRoute>
-                <ProtectedRoute onlyUnAuth={true} path={'/register'} exact={true}>
+                <ProtectedRoute onlyUnAuth={true} path={'/YandexCourseReact/register'} exact={true}>
                     <Register></Register>
                 </ProtectedRoute>
-                <ProtectedRoute onlyUnAuth={true} path={'/forgot-password'} exact={true}>
+                <ProtectedRoute onlyUnAuth={true} path={'/YandexCourseReact/forgot-password'} exact={true}>
                     <ForgotPassword></ForgotPassword>
                 </ProtectedRoute>
-                <ProtectedRoute onlyUnAuth={true} path={'/reset-password'} exact={true}>
+                <ProtectedRoute onlyUnAuth={true} path={'/YandexCourseReact/reset-password'} exact={true}>
                     <ResetPassword></ResetPassword>
                 </ProtectedRoute>
-                <ProtectedRoute path={'/profile'} exact={true}>
+                <ProtectedRoute path={'/YandexCourseReact/profile'} exact={true}>
                     <Profile></Profile>
                 </ProtectedRoute>
-                <ProtectedRoute path={'/ingredients/:id'} exact={true}>
-
+                <ProtectedRoute path={'/YandexCourseReact/ingredients/:id'} exact={true}>
+                    <div className={AppStyle.ingredientContainer}>
+                        <IngredientDetails></IngredientDetails>
+                    </div>
                 </ProtectedRoute>
                 <Route path={'/'}>
 

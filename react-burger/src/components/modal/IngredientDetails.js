@@ -1,9 +1,15 @@
 import React from 'react';
 import IngridientStyle from './ModalItem.module.css';
 import {useSelector} from "react-redux";
+import {useLocation} from "react-router-dom";
 
 function IngredientDetails(){
-    const ingredientData = useSelector(store => store.ingredient.ingredientData)
+    const location = useLocation();
+    const { from } = location.state || { from: {pathname: '/YandexCourseReact/'}};
+    const data = useSelector(store => store.burger.burgersData);
+    const item = data.find(i => i._id === location.pathname.split('/').pop())
+    const ingredientData = item || useSelector(store => store.ingredient.ingredientData);
+
     return (
         <>
             <img className={`${IngridientStyle.image} pb-4`} src={ingredientData.image} alt={`${ingredientData.image}`}/>

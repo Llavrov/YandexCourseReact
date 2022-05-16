@@ -14,8 +14,10 @@ export const UPDATE_TOKEN = 'UPDATE_TOKEN';
 export const UPDATE_TOKEN_FAILED = 'UPDATE_TOKEN_FAILED';
 export const SEND_EMAIL_MESSAGE = 'SEND_EMAIL_MESSAGE';
 export const RESET_PASSWORD = 'RESET_PASSWORD';
+export const GET_USER_DATA = 'GET_USER_DATA';
 
 export const AUTH_CHECKED = 'AUTH_CHECKED';
+export const LOGOUT = 'LOGOUT';
 
 export const getUserData = (link = 'auth/user') => (dispatch) => {
     return fetch(`${URL}${link}`,
@@ -29,9 +31,8 @@ export const getUserData = (link = 'auth/user') => (dispatch) => {
         .then(checkResponse)
 }
 
-
 export const checkUserAuth = () => (dispatch) => {
-    if (getCookie('accessToken')) {
+    if (!!getCookie('accessToken')) {
         dispatch(getUserData())
             .then((res) => {
                 dispatch({
@@ -40,12 +41,19 @@ export const checkUserAuth = () => (dispatch) => {
                 });
             })
     } else {
-        dispatch({
-            type: AUTH_CHECKED,
-            payload: {
-                user: null
-            }
-        })
+        if (localStorage.getItem('refreshToken')) {
+            dispatch(updateToken())
+                .then(() => {
+                    dispatch(checkUserAuth());
+                })
+        } else {
+            dispatch({
+                type: AUTH_CHECKED,
+                payload: {
+                    user: null
+                }
+            })
+        }
     }
 }
 
@@ -68,7 +76,7 @@ export const fetchAuthorization = (link = 'auth/login', data) => (dispatch) => {
                 payload: res
             });
         })
-        .catch(e => dispatch({type: REQUEST_AUTHORIZATION_FAILED, payload: "Неправильный логин или пароль"}))
+        .catch(() => dispatch({type: REQUEST_AUTHORIZATION_FAILED, payload: "Неправильный логин или пароль"}))
 }
 
 export const fetchForgotPassword = (link = 'password-reset', data) => (dispatch) => {
@@ -82,7 +90,6 @@ export const fetchForgotPassword = (link = 'password-reset', data) => (dispatch)
         })
         .then(checkResponse)
         .then(res => {
-            console.log(res);
             dispatch({
                 type: SEND_EMAIL_MESSAGE,
                 payload: res,
@@ -90,8 +97,24 @@ export const fetchForgotPassword = (link = 'password-reset', data) => (dispatch)
         })
 }
 
-export const logout = () => (dispatch) => {
-
+export const logout = (link = 'auth/logout') => (dispatch) => {
+    return fetch(`${URL}${link}`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({token: localStorage.getItem('refreshToken')})
+        })
+        .then(checkResponse)
+        .then(res => {
+            localStorage.clear();
+            setCookies('accessToken', res.accessToken, {expires: 0});
+            dispatch({
+                type: LOGOUT,
+                payload: res,
+            })
+        })
 }
 
 export const fetchResetPassword = (link = 'password-reset/reset', data) => (dispatch) => {
@@ -105,7 +128,6 @@ export const fetchResetPassword = (link = 'password-reset/reset', data) => (disp
         })
         .then(checkResponse)
         .then(res => {
-            console.log(res);
             dispatch({
                 type: RESET_PASSWORD,
                 payload: res,
@@ -114,14 +136,13 @@ export const fetchResetPassword = (link = 'password-reset/reset', data) => (disp
 }
 
 export const updateToken = (link = 'auth/token') => (dispatch) => {
-    const refreshToken = localStorage.getItem('refreshToken');
-    fetch(`${URL}${link}`,
+    return fetch(`${URL}${link}`,
         {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({token: {refreshToken}})
+            body: JSON.stringify({token: localStorage.getItem('refreshToken')})
         })
         .then(checkResponse)
         .then(res => {
@@ -133,7 +154,25 @@ export const updateToken = (link = 'auth/token') => (dispatch) => {
             })
         })
         .catch(e => dispatch({type: UPDATE_TOKEN_FAILED, payload: "Ошибка со стороны сервера :("}))
+}
 
+
+export const updateUserData = (link = 'auth/user', data) => (dispatch) => {
+    fetch(`${URL}${link}`,
+        {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization': JSON.stringify(data)
+            }
+        })
+        .then(checkResponse)
+        .then(res => {
+            dispatch({
+                type: UPDATE_TOKEN,
+                payload: res,
+            })
+        })
 }
 
 export const fetchRegistration = (link = 'auth/register', data) => (dispatch) => {

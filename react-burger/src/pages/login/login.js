@@ -3,11 +3,13 @@ import {Input, PasswordInput, Button} from '@ya.praktikum/react-developer-burger
 import styles from './loginStyles.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAuthorization} from "../../redux/actions/user";
-import {Redirect} from "react-router-dom";
+import {Redirect, Link, useLocation} from "react-router-dom";
 
 function Login() {
     const [emailValue, setEmailValue] = React.useState('levlevlavrov@gmail.com')
     const [passValue, setPassValue] = React.useState('Lion2020')
+    const location = useLocation();
+    const { from } = location.state || { from: {pathname: '/YandexCourseReact/'}};
 
     const dispatch = useDispatch();
     const { getUser } = useSelector(store => store.user)
@@ -21,7 +23,7 @@ function Login() {
 
     if( getUser() ) {
         return <Redirect to={{
-            pathname: '/'
+            pathname: '/YandexCourseReact/'
         }}/>
     }
 
@@ -43,10 +45,22 @@ function Login() {
             </div>
 
             <p className="text text_type_main-small pb-4">
-                Вы - новый пользователь? Зарегистрироваться
+                Вы - новый пользователь? <Link
+                    to={{
+                        pathname: '/YandexCourseReact/register',
+                        state: {from}
+                    }}>
+                     Зарегистрироваться
+                </Link>
             </p>
             <p className="text text_type_main-small">
-                Забыли пароль? Восстановить пароль
+                Забыли пароль? <Link
+                to={{
+                    pathname: '/YandexCourseReact/forgot-password',
+                    state: {from}
+                }}>
+                Восстановить пароль
+            </Link>
             </p>
         </div>
     )

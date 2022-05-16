@@ -3,23 +3,25 @@ import styles from './forgotPassword.module.css';
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchForgotPassword} from "../../redux/actions/user";
-import {Redirect} from "react-router-dom";
+import {Link, Redirect, useLocation} from "react-router-dom";
 
 
 function ForgotPassword() {
     const [emailValue, setEmailValue] = React.useState('')
     const dispatch = useDispatch();
+    const location = useLocation();
+    const { from } = location.state || { from: {pathname: '/YandexCourseReact/'}};
+
 
     const { resetPass, messageError } = useSelector(store => store.user);
 
     function handleSavePassClick() {
-        console.log({email: emailValue});
         dispatch(fetchForgotPassword('password-reset', {email: emailValue}));
     }
 
     if (resetPass) {
         return <Redirect to={{
-            pathname: '/reset-password'
+            pathname: '/YandexCourseReact/reset-password'
         }}/>
     }
 
@@ -38,7 +40,13 @@ function ForgotPassword() {
             </div>
 
             <p className="text text_type_main-small">
-                Вспомнили пароль? Войти
+                Вспомнили пароль? <Link
+                to={{
+                    pathname: '/YandexCourseReact/login',
+                    state: {from}
+                }}>
+                Войти
+            </Link>
             </p>
         </div>
     )

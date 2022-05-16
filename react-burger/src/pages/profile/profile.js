@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './profile.module.css';
 import {Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {checkUserAuth, logout} from "../../redux/actions/user";
 
 
 function Profile() {
@@ -9,9 +10,21 @@ function Profile() {
     const [loginValue, setLoginValue] = React.useState(user.email)
     const [nameValue, setNameValue] = React.useState(user.name)
     const [passValue, setPassValue] = React.useState("")
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(checkUserAuth());
+    }, []);
 
     function handleSavePassClick() {
 
+    }
+
+    function handleLogout() {
+        dispatch(logout())
+            .then(() => {
+                dispatch(checkUserAuth());
+            })
     }
 
     return (
@@ -28,7 +41,7 @@ function Profile() {
                     </p>
                 </li>
                 <li>
-                    <p className="text text_type_main-medium mb-6">
+                    <p onClick={handleLogout} className="text text_type_main-medium mb-6">
                         Выход
                     </p>
                 </li>

@@ -2,13 +2,15 @@ import React from 'react';
 import {Input, PasswordInput, Button} from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './registerStyles.module.css';
 import {useDispatch, useSelector} from "react-redux";
-import {Redirect} from "react-router-dom";
+import {Link, Redirect, useLocation} from "react-router-dom";
 import {fetchRegistration} from "../../redux/actions/user";
 
 function Register() {
     const [emailValue, setEmailValue] = React.useState('bob@example.com')
     const [nameValue, setNameValue] = React.useState('name')
     const [passValue, setPassValue] = React.useState('password')
+    const location = useLocation();
+    const { from } = location.state || { from: {pathname: '/YandexCourseReact/'}};
 
     const dispatch = useDispatch();
     const { getUser } = useSelector(store => store.user)
@@ -24,7 +26,7 @@ function Register() {
     if( getUser() ) {
         console.log(getUser())
         return <Redirect to={{
-            pathname: '/'
+            pathname: '/YandexCourseReact/'
         }}/>
     }
 
@@ -50,7 +52,13 @@ function Register() {
             </div>
 
             <p className="text text_type_main-small pb-4">
-                Уже зарегистрированны? Войти
+                Уже зарегистрированны? <Link
+                to={{
+                    pathname: '/YandexCourseReact/login',
+                    state: {from}
+                }}>
+                Войти
+            </Link>
             </p>
         </div>
     )

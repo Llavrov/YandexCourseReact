@@ -37,17 +37,14 @@
     font-family: 'Jet Brains Mono';
     color: #8585ad;
 }
-.unactive {
-    color: #8585ad;
-}
-
-.active {
+.active p{
     color: white;
 }
 
 .profile {
     display: flex;
     justify-content: center;
+    color: #8585ad;
 }
 
 .icon {

@@ -6,8 +6,11 @@ import {
     UPDATE_TOKEN,
     REQUEST_REGISTRATION,
     REQUEST_REGISTRATION_FAILED,
-    REQUEST_REGISTRATION_SUCCESS, UPDATE_TOKEN_FAILED, SEND_EMAIL_MESSAGE, RESET_PASSWORD,
-
+    REQUEST_REGISTRATION_SUCCESS,
+    UPDATE_TOKEN_FAILED,
+    SEND_EMAIL_MESSAGE,
+    RESET_PASSWORD,
+    GET_USER_DATA,
 } from "../actions/user";
 
 
@@ -105,6 +108,11 @@ export const userReducer = (state = initialState, action) => {
                 ...state,
                 setNewPass: action.payload.success,
                 messageError: action.payload.message,
+            }
+        case GET_USER_DATA:
+            return {
+                ...state,
+                user: action.payload.user,
             }
         default:
             return state
