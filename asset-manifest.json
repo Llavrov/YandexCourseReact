@@ -1,7 +1,7 @@
 {
   "main.css": "/YandexCourseReact/static/css/main.7fd0c5a4.chunk.css",
-  "main.js": "/YandexCourseReact/static/js/main.52131b7a.chunk.js",
-  "main.js.map": "/YandexCourseReact/static/js/main.52131b7a.chunk.js.map",
+  "main.js": "/YandexCourseReact/static/js/main.340ad8fe.chunk.js",
+  "main.js.map": "/YandexCourseReact/static/js/main.340ad8fe.chunk.js.map",
   "static/js/1.69f478aa.chunk.js": "/YandexCourseReact/static/js/1.69f478aa.chunk.js",
   "static/js/1.69f478aa.chunk.js.map": "/YandexCourseReact/static/js/1.69f478aa.chunk.js.map",
   "static/css/2.e29a72d7.chunk.css": "/YandexCourseReact/static/css/2.e29a72d7.chunk.css",
@@ -9,11 +9,11 @@
   "static/js/2.a13938e2.chunk.js.map": "/YandexCourseReact/static/js/2.a13938e2.chunk.js.map",
   "runtime~main.js": "/YandexCourseReact/static/js/runtime~main.db2a4757.js",
   "runtime~main.js.map": "/YandexCourseReact/static/js/runtime~main.db2a4757.js.map",
-  "static/media/index.css": "/YandexCourseReact/static/media/JetBrainsMono-ExtraLight.8a95b9f3.woff2",
+  "static/media/index.css": "/YandexCourseReact/static/media/JetBrainsMono-Italic.3227c835.woff2",
   "static/media/fonts.css": "/YandexCourseReact/static/media/iceland.44e2d48c.woff2",
-  "static/css/2.e29a72d7.chunk.css.map": "/YandexCourseReact/static/css/2.e29a72d7.chunk.css.map",
   "static/css/main.7fd0c5a4.chunk.css.map": "/YandexCourseReact/static/css/main.7fd0c5a4.chunk.css.map",
+  "static/css/2.e29a72d7.chunk.css.map": "/YandexCourseReact/static/css/2.e29a72d7.chunk.css.map",
   "index.html": "/YandexCourseReact/index.html",
-  "precache-manifest.60fc4dac706bf98578ce237f0981feaf.js": "/YandexCourseReact/precache-manifest.60fc4dac706bf98578ce237f0981feaf.js",
+  "precache-manifest.7d6005af6245420ae98d5d21b9191cb7.js": "/YandexCourseReact/precache-manifest.7d6005af6245420ae98d5d21b9191cb7.js",
   "service-worker.js": "/YandexCourseReact/service-worker.js"
 }

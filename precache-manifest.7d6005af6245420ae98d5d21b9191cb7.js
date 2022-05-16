@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "52131b7a0bbbaae307ea",
+    "revision": "340ad8fe0670366c0ba6",
     "url": "/YandexCourseReact/static/css/main.7fd0c5a4.chunk.css"
   },
   {
-    "revision": "52131b7a0bbbaae307ea",
-    "url": "/YandexCourseReact/static/js/main.52131b7a.chunk.js"
+    "revision": "340ad8fe0670366c0ba6",
+    "url": "/YandexCourseReact/static/js/main.340ad8fe.chunk.js"
   },
   {
     "revision": "69f478aa85da0edec0f6",
@@ -24,6 +24,10 @@ self.__precacheManifest = [
     "url": "/YandexCourseReact/static/js/runtime~main.db2a4757.js"
   },
   {
+    "revision": "8a95b9f3167630fe43a63e43a83e5b2e",
+    "url": "/YandexCourseReact/static/media/JetBrainsMono-ExtraLight.8a95b9f3.woff2"
+  },
+  {
     "revision": "846172004976073c0aff81d4eac924de",
     "url": "/YandexCourseReact/static/media/JetBrainsMono-Bold.84617200.woff2"
   },
@@ -32,20 +36,16 @@ self.__precacheManifest = [
     "url": "/YandexCourseReact/static/media/JetBrainsMono-Italic.3227c835.woff2"
   },
   {
-    "revision": "8a95b9f3167630fe43a63e43a83e5b2e",
-    "url": "/YandexCourseReact/static/media/JetBrainsMono-ExtraLight.8a95b9f3.woff2"
-  },
-  {
     "revision": "2fe9a2bdaa6daf61e770a2edb7252040",
     "url": "/YandexCourseReact/static/media/JetBrainsMono-Regular.2fe9a2bd.woff"
   },
   {
-    "revision": "21ba2c11275a07ccf3890fbeab585525",
-    "url": "/YandexCourseReact/static/media/JetBrainsMono-Regular.21ba2c11.woff2"
-  },
-  {
     "revision": "a492f7427b1561cc96ace88f5756d94e",
     "url": "/YandexCourseReact/static/media/JetBrainsMono-Bold.a492f742.woff2"
+  },
+  {
+    "revision": "21ba2c11275a07ccf3890fbeab585525",
+    "url": "/YandexCourseReact/static/media/JetBrainsMono-Regular.21ba2c11.woff2"
   },
   {
     "revision": "896f23850b33cd1df94eb955d4b60079",
@@ -60,7 +60,7 @@ self.__precacheManifest = [
     "url": "/YandexCourseReact/static/media/iceland.44e2d48c.woff2"
   },
   {
-    "revision": "8f27c8620199cb54d9bf8b671648ffd1",
+    "revision": "b6eeb4e91015d7c8375e44bc9f8ca239",
     "url": "/YandexCourseReact/index.html"
   }
 ];
