@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "340ad8fe0670366c0ba6",
+    "revision": "05dc4ec91250bb6d36bd",
     "url": "/YandexCourseReact/static/css/main.7fd0c5a4.chunk.css"
   },
   {
-    "revision": "340ad8fe0670366c0ba6",
-    "url": "/YandexCourseReact/static/js/main.340ad8fe.chunk.js"
+    "revision": "05dc4ec91250bb6d36bd",
+    "url": "/YandexCourseReact/static/js/main.05dc4ec9.chunk.js"
   },
   {
     "revision": "69f478aa85da0edec0f6",
@@ -24,16 +24,20 @@ self.__precacheManifest = [
     "url": "/YandexCourseReact/static/js/runtime~main.db2a4757.js"
   },
   {
-    "revision": "8a95b9f3167630fe43a63e43a83e5b2e",
-    "url": "/YandexCourseReact/static/media/JetBrainsMono-ExtraLight.8a95b9f3.woff2"
-  },
-  {
     "revision": "846172004976073c0aff81d4eac924de",
     "url": "/YandexCourseReact/static/media/JetBrainsMono-Bold.84617200.woff2"
   },
   {
+    "revision": "8a95b9f3167630fe43a63e43a83e5b2e",
+    "url": "/YandexCourseReact/static/media/JetBrainsMono-ExtraLight.8a95b9f3.woff2"
+  },
+  {
     "revision": "3227c83538dc1dc1f57e1954b437e0d8",
     "url": "/YandexCourseReact/static/media/JetBrainsMono-Italic.3227c835.woff2"
+  },
+  {
+    "revision": "21ba2c11275a07ccf3890fbeab585525",
+    "url": "/YandexCourseReact/static/media/JetBrainsMono-Regular.21ba2c11.woff2"
   },
   {
     "revision": "2fe9a2bdaa6daf61e770a2edb7252040",
@@ -44,23 +48,19 @@ self.__precacheManifest = [
     "url": "/YandexCourseReact/static/media/JetBrainsMono-Bold.a492f742.woff2"
   },
   {
-    "revision": "21ba2c11275a07ccf3890fbeab585525",
-    "url": "/YandexCourseReact/static/media/JetBrainsMono-Regular.21ba2c11.woff2"
-  },
-  {
     "revision": "896f23850b33cd1df94eb955d4b60079",
     "url": "/YandexCourseReact/static/media/JetBrainsMono-Bold.896f2385.woff"
-  },
-  {
-    "revision": "df042be2e40babc665f1f8a2d67d0f86",
-    "url": "/YandexCourseReact/static/media/iceland.df042be2.woff"
   },
   {
     "revision": "44e2d48cffc1c5da01730f6103fe9eaa",
     "url": "/YandexCourseReact/static/media/iceland.44e2d48c.woff2"
   },
   {
-    "revision": "b6eeb4e91015d7c8375e44bc9f8ca239",
+    "revision": "df042be2e40babc665f1f8a2d67d0f86",
+    "url": "/YandexCourseReact/static/media/iceland.df042be2.woff"
+  },
+  {
+    "revision": "4f6d5bfca08f523a7d30f80d3ec3c083",
     "url": "/YandexCourseReact/index.html"
   }
 ];
