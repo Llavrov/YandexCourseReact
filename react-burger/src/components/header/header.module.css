@@ -25,9 +25,24 @@
     padding: 0;
 }
 
-.container ul li {
+.container ul a li {
     display: flex;
     justify-content: center;
+    font-family: 'Jet Brains Mono';
+}
+
+.container ul a,
+.container a {
+    text-decoration: none;
+    font-family: 'Jet Brains Mono';
+    color: #8585ad;
+}
+.unactive {
+    color: #8585ad;
+}
+
+.active {
+    color: white;
 }
 
 .profile {

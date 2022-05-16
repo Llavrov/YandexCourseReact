@@ -6,7 +6,7 @@ import {
     UPDATE_TOKEN,
     REQUEST_REGISTRATION,
     REQUEST_REGISTRATION_FAILED,
-    REQUEST_REGISTRATION_SUCCESS, UPDATE_TOKEN_FAILED,
+    REQUEST_REGISTRATION_SUCCESS, UPDATE_TOKEN_FAILED, SEND_EMAIL_MESSAGE, RESET_PASSWORD,
 
 } from "../actions/user";
 
@@ -18,6 +18,8 @@ const initialState = {
     authorizationFailed: false,
     registrationRequest: false,
     registrationFailed: false,
+    resetPass: false,
+    setNewPass: false,
     user: {
         email: "",
         name: ""
@@ -91,6 +93,18 @@ export const userReducer = (state = initialState, action) => {
                 registrationRequest: false,
                 registrationFailed: true,
                 messageError: action.payload,
+            }
+        case SEND_EMAIL_MESSAGE:
+            return {
+                ...state,
+                resetPass: action.payload.success,
+                messageError: action.payload.message,
+            }
+        case RESET_PASSWORD:
+            return {
+                ...state,
+                setNewPass: action.payload.success,
+                messageError: action.payload.message,
             }
         default:
             return state

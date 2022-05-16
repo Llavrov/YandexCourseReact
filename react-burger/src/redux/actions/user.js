@@ -12,6 +12,8 @@ export const REQUEST_AUTHORIZATION_SUCCESS = 'REQUEST_AUTHORIZATION_SUCCESS';
 
 export const UPDATE_TOKEN = 'UPDATE_TOKEN';
 export const UPDATE_TOKEN_FAILED = 'UPDATE_TOKEN_FAILED';
+export const SEND_EMAIL_MESSAGE = 'SEND_EMAIL_MESSAGE';
+export const RESET_PASSWORD = 'RESET_PASSWORD';
 
 export const AUTH_CHECKED = 'AUTH_CHECKED';
 
@@ -67,6 +69,48 @@ export const fetchAuthorization = (link = 'auth/login', data) => (dispatch) => {
             });
         })
         .catch(e => dispatch({type: REQUEST_AUTHORIZATION_FAILED, payload: "Неправильный логин или пароль"}))
+}
+
+export const fetchForgotPassword = (link = 'password-reset', data) => (dispatch) => {
+    fetch(`${URL}${link}`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(checkResponse)
+        .then(res => {
+            console.log(res);
+            dispatch({
+                type: SEND_EMAIL_MESSAGE,
+                payload: res,
+            })
+        })
+}
+
+export const logout = () => (dispatch) => {
+
+}
+
+export const fetchResetPassword = (link = 'password-reset/reset', data) => (dispatch) => {
+    fetch(`${URL}${link}`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(checkResponse)
+        .then(res => {
+            console.log(res);
+            dispatch({
+                type: RESET_PASSWORD,
+                payload: res,
+            })
+        })
 }
 
 export const updateToken = (link = 'auth/token') => (dispatch) => {

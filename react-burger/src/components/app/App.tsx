@@ -11,6 +11,9 @@ import Login from "../../pages/login/login";
 import ProtectedRoute from "../protectedRoute/protectedRoute";
 import Register from "../../pages/register/register";
 import {checkUserAuth} from "../../redux/actions/user";
+import ResetPassword from "../../pages/reset-password/reset-password";
+import ForgotPassword from "../../pages/forgot-password/forgot-password";
+import Profile from "../../pages/profile/profile";
 
 
 function App() {
@@ -46,13 +49,13 @@ function App() {
                     <Register></Register>
                 </ProtectedRoute>
                 <ProtectedRoute onlyUnAuth={true} path={'/forgot-password'} exact={true}>
-
+                    <ForgotPassword></ForgotPassword>
                 </ProtectedRoute>
                 <ProtectedRoute onlyUnAuth={true} path={'/reset-password'} exact={true}>
-
+                    <ResetPassword></ResetPassword>
                 </ProtectedRoute>
                 <ProtectedRoute path={'/profile'} exact={true}>
-
+                    <Profile></Profile>
                 </ProtectedRoute>
                 <ProtectedRoute path={'/ingredients/:id'} exact={true}>
 
