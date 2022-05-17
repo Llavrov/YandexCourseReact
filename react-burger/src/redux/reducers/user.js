@@ -10,7 +10,7 @@ import {
     UPDATE_TOKEN_FAILED,
     SEND_EMAIL_MESSAGE,
     RESET_PASSWORD,
-    GET_USER_DATA,
+    GET_USER_DATA, RESET_PASSWORD_FAILED, LOGOUT_FAILED, SEND_EMAIL_MESSAGE_FAILED, GET_USER_DATA_FAILED,
 } from "../actions/user";
 
 
@@ -103,16 +103,36 @@ export const userReducer = (state = initialState, action) => {
                 resetPass: action.payload.success,
                 messageError: action.payload.message,
             }
+        case SEND_EMAIL_MESSAGE_FAILED:
+            return {
+                ...state,
+                messageError: action.payload,
+            }
         case RESET_PASSWORD:
             return {
                 ...state,
                 setNewPass: action.payload.success,
                 messageError: action.payload.message,
             }
+        case RESET_PASSWORD_FAILED:
+            return {
+                ...state,
+                messageError: action.payload,
+            }
         case GET_USER_DATA:
             return {
                 ...state,
                 user: action.payload.user,
+            }
+        case LOGOUT_FAILED:
+            return {
+                ...state,
+                messageError: action.payload,
+            }
+        case GET_USER_DATA_FAILED:
+            return {
+                ...state,
+                messageError: action.payload,
             }
         default:
             return state

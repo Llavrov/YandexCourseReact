@@ -13,10 +13,12 @@ function ForgotPassword() {
     const { from } = location.state || { from: {pathname: '/YandexCourseReact/'}};
 
 
-    const { resetPass, messageError } = useSelector(store => store.user);
+    const { resetPass } = useSelector(store => store.user);
 
-    function handleSavePassClick() {
+    function handleSavePassClick(event) {
+        event.preventDefault()
         dispatch(fetchForgotPassword('password-reset', {email: emailValue}));
+        return false;
     }
 
     if (resetPass) {
@@ -30,14 +32,16 @@ function ForgotPassword() {
             <p className="text text_type_main-medium mb-6">
                 Восстановление пароля
             </p>
-            <div className="pb-6">
-                <Input type="text" placeholder={'Укажите e-mail'} size={'default'} onChange={e => setEmailValue(e.target.value)} value={emailValue} name={'text'} />
-            </div>
-            <div className="pb-20">
-                <Button type="primary" size="large" onClick={handleSavePassClick}>
-                    Восстановить
-                </Button>
-            </div>
+            <form onSubmit={handleSavePassClick}>
+                <div className="pb-6">
+                    <Input type="text" placeholder={'Укажите e-mail'} size={'default'} onChange={e => setEmailValue(e.target.value)} value={emailValue} name={'text'} />
+                </div>
+                <div className="pb-20">
+                    <Button type="primary" size="large">
+                        Восстановить
+                    </Button>
+                </div>
+            </form>
 
             <p className="text text_type_main-small">
                 Вспомнили пароль? <Link

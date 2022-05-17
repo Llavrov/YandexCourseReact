@@ -5,12 +5,10 @@ import {useLocation} from "react-router-dom";
 
 function IngredientDetails(){
     const location = useLocation();
-    const { from } = location.state || { from: {pathname: '/YandexCourseReact/'}};
     const data = useSelector(store => store.burger.burgersData);
-    const item = data.find(i => i._id === location.pathname.split('/').pop())
-    const ingredientData = item || useSelector(store => store.ingredient.ingredientData);
+    const ingredientData = data.find(i => i._id === location.pathname.split('/').pop()) || null;
 
-    return (
+    return ingredientData && (
         <>
             <img className={`${IngridientStyle.image} pb-4`} src={ingredientData.image} alt={`${ingredientData.image}`}/>
             <p className="pb-8 text text_type_main-medium">{ingredientData.name}</p>

@@ -12,19 +12,19 @@ function Login() {
     const { from } = location.state || { from: {pathname: '/YandexCourseReact/'}};
 
     const dispatch = useDispatch();
-    const { getUser } = useSelector(store => store.user)
+    const { getUser, user } = useSelector(store => store.user)
 
-    function handleLoginClick() {
+    function handleLoginClick(event) {
+        event.preventDefault();
         dispatch(fetchAuthorization('auth/login', {
             "email": emailValue,
             "password": passValue,
         }));
+        return false;
     }
 
     if( getUser() ) {
-        return <Redirect to={{
-            pathname: '/YandexCourseReact/'
-        }}/>
+        return <Redirect to={from}/>
     }
 
     return (
@@ -32,17 +32,19 @@ function Login() {
             <p className="text text_type_main-medium mb-6">
                 Вход
             </p>
-            <div className="pb-6">
-                <Input type="email" size={'default'} onChange={e => setEmailValue(e.target.value)} value={emailValue} name={'email'} />
-            </div>
-            <div className="pb-6">
-                <PasswordInput onChange={e => setPassValue(e.target.value)} value={passValue} name={'password'} />
-            </div>
-            <div className="pb-20">
-                <Button type="primary" size="large" onClick={handleLoginClick}>
-                    Войти
-                </Button>
-            </div>
+            <form onSubmit={handleLoginClick}>
+                <div className="pb-6">
+                    <Input type="email" size={'default'} onChange={e => setEmailValue(e.target.value)} value={emailValue} name={'email'} />
+                </div>
+                <div className="pb-6">
+                    <PasswordInput onChange={e => setPassValue(e.target.value)} value={passValue} name={'password'} />
+                </div>
+                <div className="pb-20">
+                    <Button type="primary" size="large">
+                        Войти
+                    </Button>
+                </div>
+            </form>
 
             <p className="text text_type_main-small pb-4">
                 Вы - новый пользователь? <Link

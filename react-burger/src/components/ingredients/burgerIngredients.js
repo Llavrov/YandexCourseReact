@@ -2,14 +2,11 @@ import React from 'react';
 import inStyle from './burgerIngridients.module.css';
 import TabBurger from "./tabBurger";
 import ItemBlock from "./itemBlock";
-import IngredientDetails from "../modal/IngredientDetails";
-import Modal from "../modal/Modal";
-import {useDispatch, useSelector} from "react-redux";
-import {DELETE_INGREDIENT_ITEM} from "../../redux/actions/ingredient";
+import {useSelector} from "react-redux";
 
 function BurgerIngredients() {
-    const dispatch = useDispatch();
-    const modalOpen = useSelector(store => store.ingredient.modalOpen);
+    // const dispatch = useDispatch();
+    // const modalOpen = useSelector(store => store.ingredient.modalOpen);
     const data = useSelector(store => store.burger.burgersData);
     const [current, setCurrent] = React.useState('Булки')
 
@@ -24,10 +21,6 @@ function BurgerIngredients() {
 
     return (
         <div className={`${inStyle.cards} mr-10`}>
-            {!modalOpen &&
-            <Modal header={'Детали ингредиента'}  classModal={'mt-10'} onClose={() => dispatch({type: DELETE_INGREDIENT_ITEM})}>
-                <IngredientDetails></IngredientDetails>
-            </Modal>}
             <p className="text text_type_main-large pb-5 pt-10">
                 Соберите бургер
             </p>

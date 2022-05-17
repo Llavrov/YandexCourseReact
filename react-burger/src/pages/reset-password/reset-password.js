@@ -13,10 +13,19 @@ function ResetPassword() {
     const { from } = location.state || { from: {pathname: '/YandexCourseReact/'}};
 
     const dispatch = useDispatch();
-    const { setNewPass, messageError } = useSelector(store => store.user);
+    const { setNewPass } = useSelector(store => store.user);
+    const { resetPass } = useSelector(store => store.user);
 
-    function handleSavePassClick() {
+    function handleSavePassClick(event) {
+        event.preventDefault()
         dispatch(fetchResetPassword('password-reset/reset', {password: passValue, token: tokenValue}));
+        return false;
+    }
+
+    if (!resetPass) {
+        return <Redirect to={{
+            pathname: '/YandexCourseReact/forgot-password'
+        }}/>
     }
 
     if (setNewPass) {
@@ -30,17 +39,19 @@ function ResetPassword() {
             <p className="text text_type_main-medium mb-6">
                 Восстановление пароля
             </p>
-            <div className="pb-6">
-                <PasswordInput placeholder={"Введите новый пароль"} onChange={e => setPassValue(e.target.value)} value={passValue} name={'password'} />
-            </div>
-            <div className="pb-6">
-                <Input type="text" placeholder={'Введите код из письма'} size={'default'} onChange={e => setTokenValue(e.target.value)} value={tokenValue} name={'text'} />
-            </div>
-            <div className="pb-20">
-                <Button type="primary" size="large" onClick={handleSavePassClick}>
-                    Схоранить
-                </Button>
-            </div>
+            <form onSubmit={handleSavePassClick}>
+                <div className="pb-6">
+                    <PasswordInput placeholder={"Введите новый пароль"} onChange={e => setPassValue(e.target.value)} value={passValue} name={'password'} />
+                </div>
+                <div className="pb-6">
+                    <Input type="text" placeholder={'Введите код из письма'} size={'default'} onChange={e => setTokenValue(e.target.value)} value={tokenValue} name={'text'} />
+                </div>
+                <div className="pb-20">
+                    <Button type="primary" size="large">
+                        Схоранить
+                    </Button>
+                </div>
+            </form>
 
             <p className="text text_type_main-small">
                 Вспомнили пароль? <Link

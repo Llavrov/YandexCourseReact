@@ -12,12 +12,20 @@ export const REQUEST_AUTHORIZATION_SUCCESS = 'REQUEST_AUTHORIZATION_SUCCESS';
 
 export const UPDATE_TOKEN = 'UPDATE_TOKEN';
 export const UPDATE_TOKEN_FAILED = 'UPDATE_TOKEN_FAILED';
+
 export const SEND_EMAIL_MESSAGE = 'SEND_EMAIL_MESSAGE';
+export const SEND_EMAIL_MESSAGE_FAILED = 'SEND_EMAIL_MESSAGE_FAILED'
+
 export const RESET_PASSWORD = 'RESET_PASSWORD';
+export const RESET_PASSWORD_FAILED = 'RESET_PASSWORD_FAILED';
+
 export const GET_USER_DATA = 'GET_USER_DATA';
+export const GET_USER_DATA_FAILED = 'GET_USER_DATA_FAILED';
 
 export const AUTH_CHECKED = 'AUTH_CHECKED';
+export const AUTH_CHECKED_FAILED = 'AUTH_CHECKED_FAILED';
 export const LOGOUT = 'LOGOUT';
+export const LOGOUT_FAILED = 'LOGOUT_FAILED';
 
 export const getUserData = (link = 'auth/user') => (dispatch) => {
     return fetch(`${URL}${link}`,
@@ -29,6 +37,7 @@ export const getUserData = (link = 'auth/user') => (dispatch) => {
             }
         })
         .then(checkResponse)
+        .catch(e => dispatch({type: GET_USER_DATA_FAILED, payload: "Не получили информацию о пользвателе"}))
 }
 
 export const checkUserAuth = () => (dispatch) => {
@@ -40,6 +49,7 @@ export const checkUserAuth = () => (dispatch) => {
                     payload: res
                 });
             })
+            .catch(e => dispatch({type: AUTH_CHECKED_FAILED, payload: "Не получилось проверить токен"}))
     } else {
         if (localStorage.getItem('refreshToken')) {
             dispatch(updateToken())
@@ -95,6 +105,7 @@ export const fetchForgotPassword = (link = 'password-reset', data) => (dispatch)
                 payload: res,
             })
         })
+        .catch(e => dispatch({type: SEND_EMAIL_MESSAGE_FAILED, payload: "Что-то пошло не так - попробуйте восстановить пароль снова"}))
 }
 
 export const logout = (link = 'auth/logout') => (dispatch) => {
@@ -115,6 +126,7 @@ export const logout = (link = 'auth/logout') => (dispatch) => {
                 payload: res,
             })
         })
+        .catch(e => dispatch({type: LOGOUT_FAILED, payload: "Не получилось выйти, мы разбираемся"}))
 }
 
 export const fetchResetPassword = (link = 'password-reset/reset', data) => (dispatch) => {
@@ -133,6 +145,7 @@ export const fetchResetPassword = (link = 'password-reset/reset', data) => (disp
                 payload: res,
             })
         })
+        .catch(e => dispatch({type: RESET_PASSWORD_FAILED, payload: "Что-то пошло не так - попробуйте восстановить пароль снова"}))
 }
 
 export const updateToken = (link = 'auth/token') => (dispatch) => {
@@ -173,6 +186,7 @@ export const updateUserData = (link = 'auth/user', data) => (dispatch) => {
                 payload: res,
             })
         })
+        .catch(e => dispatch({type: UPDATE_TOKEN_FAILED, payload: "Ошибка со стороны сервера :("}))
 }
 
 export const fetchRegistration = (link = 'auth/register', data) => (dispatch) => {

@@ -4,7 +4,9 @@ import {
 } from "../actions/ingredient";
 
 const initialState = {
-    ingredientData: {},
+    ingredientData: {
+        isLoading: false
+    },
     modalOpen: true,
 }
 

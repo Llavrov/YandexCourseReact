@@ -15,12 +15,14 @@ function Register() {
     const dispatch = useDispatch();
     const { getUser } = useSelector(store => store.user)
 
-    function handleLoginClick() {
+    function handleRegisterClick(event) {
+        event.preventDefault()
         dispatch(fetchRegistration('auth/register', {
             "email": emailValue,
             "password": passValue,
             "name": nameValue,
         }));
+        return false;
     }
 
     if( getUser() ) {
@@ -36,20 +38,22 @@ function Register() {
             <p className="text text_type_main-medium mb-6">
                 Регистрация
             </p>
-            <div className="pb-6">
-                <Input type="email" size={'default'} onChange={e => setNameValue(e.target.value)} value={nameValue} name={'email'} />
-            </div>
-            <div className="pb-6">
-                <Input type="email" size={'default'} onChange={e => setEmailValue(e.target.value)} value={emailValue} name={'email'} />
-            </div>
-            <div className="pb-6">
-                <PasswordInput onChange={e => setPassValue(e.target.value)} value={passValue} name={'password'} />
-            </div>
-            <div className="pb-20">
-                <Button type="primary" size="large" onClick={handleLoginClick}>
-                    Зарегистрироваться
-                </Button>
-            </div>
+            <form onSubmit={handleRegisterClick}>
+                <div className="pb-6">
+                    <Input type="email" size={'default'} onChange={e => setNameValue(e.target.value)} value={nameValue} name={'email'} />
+                </div>
+                <div className="pb-6">
+                    <Input type="email" size={'default'} onChange={e => setEmailValue(e.target.value)} value={emailValue} name={'email'} />
+                </div>
+                <div className="pb-6">
+                    <PasswordInput onChange={e => setPassValue(e.target.value)} value={passValue} name={'password'} />
+                </div>
+                <div className="pb-20">
+                    <Button type="primary" size="large">
+                        Зарегистрироваться
+                    </Button>
+                </div>
+            </form>
 
             <p className="text text_type_main-small pb-4">
                 Уже зарегистрированны? <Link

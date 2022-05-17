@@ -16,9 +16,9 @@ function Profile() {
         dispatch(checkUserAuth());
     }, []);
 
-    function handleSavePassClick() {
-
-    }
+    // function handleSavePassClick() {
+    //
+    // }
 
     function handleLogout() {
         dispatch(logout())
@@ -46,17 +46,19 @@ function Profile() {
                     </p>
                 </li>
             </ul>
-            <div className={styles.container}>
-                <div className="pb-6">
-                    <Input icon={'EditIcon'} type="text" placeholder={'Логин'} size={'default'} onChange={e => setLoginValue(e.target.value)} value={loginValue} name={'text'} />
+            <form  className={styles.container}>
+                <div>
+                    <div className="pb-6">
+                        <Input icon={'EditIcon'} type="text" placeholder={'Логин'} size={'default'} onChange={e => setLoginValue(e.target.value)} value={loginValue} name={'text'} />
+                    </div>
+                    <div className="pb-6">
+                        <Input icon={'EditIcon'} type="text" placeholder={'Имя'} size={'default'} onChange={e => setNameValue(e.target.value)} value={nameValue} name={'text'} />
+                    </div>
+                    <div className="pb-6">
+                        <PasswordInput icon={'EditIcon'} placeholder={"Введите новый пароль"} onChange={e => setPassValue(e.target.value)} value={passValue} name={'password'} />
+                    </div>
                 </div>
-                <div className="pb-6">
-                    <Input icon={'EditIcon'} type="text" placeholder={'Имя'} size={'default'} onChange={e => setNameValue(e.target.value)} value={nameValue} name={'text'} />
-                </div>
-                <div className="pb-6">
-                    <PasswordInput icon={'EditIcon'} placeholder={"Введите новый пароль"} onChange={e => setPassValue(e.target.value)} value={passValue} name={'password'} />
-                </div>
-            </div>
+            </form>
         </div>
     )
 }
