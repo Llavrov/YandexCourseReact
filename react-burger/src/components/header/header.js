@@ -1,34 +1,55 @@
 import React from 'react';
 import {BurgerIcon, ListIcon, Logo, ProfileIcon, } from '@ya.praktikum/react-developer-burger-ui-components';
 import headerStyle from './header.module.css';
+import { NavLink, useRouteMatch} from "react-router-dom";
 
-class Header extends React.Component {
+function Header(){
 
-    render () {
-        return (
-            <header className={headerStyle.header}>
-                <div className={headerStyle.container}>
-                    <ul>
-                        <li className={'pt-4 pb-4 pr-5 pl-5'}>
-                            <BurgerIcon className={headerStyle.icon}></BurgerIcon>
+    const isConstructor = !!useRouteMatch({path: '/YandexCourseReact/', exact: true})
+    const isFeed = !!useRouteMatch('/YandexCourseReact/feed')
+    const isProfile = !!useRouteMatch('/YandexCourseReact/profile')
+
+    return (
+        <header className={headerStyle.header}>
+            <div className={headerStyle.container}>
+                <ul>
+                    <NavLink
+                        className={headerStyle.unactive}
+                        to={{
+                        pathname: '/YandexCourseReact/'
+                    }}>
+                        <li className={`${isConstructor && headerStyle.active} pt-4 pb-4 pr-5 pl-5 `}>
+                            <BurgerIcon type={`${isConstructor ? 'primary' : 'secondary'}`}  className={headerStyle.icon}></BurgerIcon>
                             <p className="pl-2 text text_type_main-default">Конструктор</p>
                         </li>
-                        <li className={'pt-4 pb-4 pr-5 pl-5'}>
-                            <ListIcon className={headerStyle.icon}></ListIcon>
+                    </NavLink>
+                    <NavLink
+                        className={headerStyle.unactive}
+                        to={{
+                            pathname: '/YandexCourseReact/'
+                    }}>
+                        <li className={`${isFeed && headerStyle.active} pt-4 pb-4 pr-5 pl-5 `}>
+                            <ListIcon type={`${isFeed ? 'primary' : 'secondary'}`} className={headerStyle.icon}></ListIcon>
                             <p className="pl-2 text text_type_main-default">Лента заказов</p>
                         </li>
-                    </ul>
-                    <div className={headerStyle.logo}>
-                        <Logo></Logo>
-                    </div>
-                    <div className={`${headerStyle.profile} pt-4 pb-4 pr-5 pl-5`}>
-                        <ProfileIcon className={headerStyle.icon}></ProfileIcon>
+                    </NavLink>
+                </ul>
+                <div className={headerStyle.logo}>
+                    <Logo></Logo>
+                </div>
+                <NavLink
+                    className={headerStyle.unactive}
+                    to={{
+                    pathname: '/YandexCourseReact/profile'
+                }}>
+                    <div className={`${isProfile && headerStyle.active} ${headerStyle.profile} pt-4 pb-4 pr-5 pl-5 `}>
+                        <ProfileIcon type={`${isProfile ? 'primary' : 'secondary'}`} className={headerStyle.icon}></ProfileIcon>
                         <p className="pl-2 text text_type_main-default">Личный кабинет</p>
                     </div>
-                </div>
-            </header>
-        )
-    }
+                </NavLink>
+            </div>
+        </header>
+    )
 }
 
 export default Header;

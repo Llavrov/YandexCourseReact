@@ -1,0 +1,32 @@
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  min-height: 300px;
+  height: 900px;
+  position: relative;
+}
+
+.burger {
+  max-width: 1280px;
+  height: calc(100% - 88px);
+  width: 100%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  /*flex-wrap: wrap;*/
+}
+
+.ingredientContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
