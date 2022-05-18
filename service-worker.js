@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/YandexCourseReact/precache-manifest.500653fd4b1550b4562694726940e5c1.js"
+  "/YandexCourseReact/precache-manifest.473568c9a43078a52497570c0e5ddfe5.js"
 );
 
 workbox.clientsClaim();

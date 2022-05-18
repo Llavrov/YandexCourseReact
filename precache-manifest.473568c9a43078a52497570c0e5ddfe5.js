@@ -1,23 +1,23 @@
 self.__precacheManifest = [
   {
-    "revision": "44520707ff2289850e80",
-    "url": "/YandexCourseReact/static/css/main.7fd0c5a4.chunk.css"
+    "revision": "cd387e20819a330e530e",
+    "url": "/YandexCourseReact/static/css/main.747e8f24.chunk.css"
   },
   {
-    "revision": "44520707ff2289850e80",
-    "url": "/YandexCourseReact/static/js/main.44520707.chunk.js"
+    "revision": "cd387e20819a330e530e",
+    "url": "/YandexCourseReact/static/js/main.cd387e20.chunk.js"
   },
   {
     "revision": "69f478aa85da0edec0f6",
     "url": "/YandexCourseReact/static/js/1.69f478aa.chunk.js"
   },
   {
-    "revision": "756c286d1bb6161ea555",
+    "revision": "b2c530c19c886cc0e71b",
     "url": "/YandexCourseReact/static/css/2.e29a72d7.chunk.css"
   },
   {
-    "revision": "756c286d1bb6161ea555",
-    "url": "/YandexCourseReact/static/js/2.756c286d.chunk.js"
+    "revision": "b2c530c19c886cc0e71b",
+    "url": "/YandexCourseReact/static/js/2.b2c530c1.chunk.js"
   },
   {
     "revision": "db2a475709b00111598d",
@@ -28,24 +28,28 @@ self.__precacheManifest = [
     "url": "/YandexCourseReact/static/media/JetBrainsMono-ExtraLight.8a95b9f3.woff2"
   },
   {
-    "revision": "3227c83538dc1dc1f57e1954b437e0d8",
-    "url": "/YandexCourseReact/static/media/JetBrainsMono-Italic.3227c835.woff2"
-  },
-  {
     "revision": "846172004976073c0aff81d4eac924de",
     "url": "/YandexCourseReact/static/media/JetBrainsMono-Bold.84617200.woff2"
   },
   {
-    "revision": "896f23850b33cd1df94eb955d4b60079",
-    "url": "/YandexCourseReact/static/media/JetBrainsMono-Bold.896f2385.woff"
+    "revision": "3227c83538dc1dc1f57e1954b437e0d8",
+    "url": "/YandexCourseReact/static/media/JetBrainsMono-Italic.3227c835.woff2"
+  },
+  {
+    "revision": "a492f7427b1561cc96ace88f5756d94e",
+    "url": "/YandexCourseReact/static/media/JetBrainsMono-Bold.a492f742.woff2"
   },
   {
     "revision": "21ba2c11275a07ccf3890fbeab585525",
     "url": "/YandexCourseReact/static/media/JetBrainsMono-Regular.21ba2c11.woff2"
   },
   {
-    "revision": "a492f7427b1561cc96ace88f5756d94e",
-    "url": "/YandexCourseReact/static/media/JetBrainsMono-Bold.a492f742.woff2"
+    "revision": "896f23850b33cd1df94eb955d4b60079",
+    "url": "/YandexCourseReact/static/media/JetBrainsMono-Bold.896f2385.woff"
+  },
+  {
+    "revision": "2fe9a2bdaa6daf61e770a2edb7252040",
+    "url": "/YandexCourseReact/static/media/JetBrainsMono-Regular.2fe9a2bd.woff"
   },
   {
     "revision": "df042be2e40babc665f1f8a2d67d0f86",
@@ -56,11 +60,7 @@ self.__precacheManifest = [
     "url": "/YandexCourseReact/static/media/iceland.44e2d48c.woff2"
   },
   {
-    "revision": "2fe9a2bdaa6daf61e770a2edb7252040",
-    "url": "/YandexCourseReact/static/media/JetBrainsMono-Regular.2fe9a2bd.woff"
-  },
-  {
-    "revision": "cfa48fe10ea427daaa10c9cd296457fd",
+    "revision": "190d5559473f35ac26e75160da003dca",
     "url": "/YandexCourseReact/index.html"
   }
 ];
