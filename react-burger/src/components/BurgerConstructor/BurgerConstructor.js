@@ -9,12 +9,15 @@ import {fetchOrderInfo, SET_ORDER_CLOSE} from "../../redux/actions/order";
 import { useDrop } from "react-dnd";
 import {ADD_CONSTRUCTOR_ITEM, SET_CONSTRUCTOR_BUN, UPDATE_CONSTRUCTOR_LIST} from "../../redux/actions/constructor";
 import { v4 as uuidv4 } from 'uuid';
+import {useHistory} from "react-router-dom";
 
 function BurgerConstructor() {
     const dispatch = useDispatch();
     const {constructorBun, constructorData, constructorFinalCoast} = useSelector(store => store.constructorBurger);
     const {orderData: orderDetails} = useSelector(store => store.order);
     const {success: orderSuccess } = useSelector(store => store.order.orderData);
+    const { getUser } = useSelector(store => store.user)
+    const history = useHistory();
 
     function handleSetComponentById(props) {
         return {...props, index_id: `${uuidv4()}`}
@@ -54,7 +57,11 @@ function BurgerConstructor() {
 
     function handleButtonOrder() {
         let orders = [...constructorData.map(item => item = item._id), constructorBun._id];
-        dispatch(fetchOrderInfo('orders', orders))
+        if (getUser()) {
+            dispatch(fetchOrderInfo('orders', orders));
+        } else {
+            history.push('/YandexCourseReact/login');
+        }
     }
 
     return (

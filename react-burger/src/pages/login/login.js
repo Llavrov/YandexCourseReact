@@ -12,7 +12,7 @@ function Login() {
     const { from } = location.state || { from: {pathname: '/YandexCourseReact/'}};
 
     const dispatch = useDispatch();
-    const { getUser, user } = useSelector(store => store.user)
+    const { getUser } = useSelector(store => store.user)
 
     function handleLoginClick(event) {
         event.preventDefault();

@@ -12,7 +12,6 @@ function ProtectedRoute({onlyUnAuth = false, UnAuth = false, children, ...rest})
         return <></>
 
     if ( onlyUnAuth && getUser() ) {
-        const { from } = location.state || { from: {pathname: '/YandexCourseReact/'}};
         return (
             <Route {...rest}>
                 <Redirect to={from}/>
@@ -23,7 +22,7 @@ function ProtectedRoute({onlyUnAuth = false, UnAuth = false, children, ...rest})
     if ( !onlyUnAuth && !getUser() && !UnAuth) {
         return (
             <Route {...rest}>
-                <Redirect to={{ pathname: "/YandexCourseReact/login", state: {from} }}/>
+                <Redirect to={{ pathname: "/YandexCourseReact/login", state: { from: location } }} />
             </Route>
         );
     }

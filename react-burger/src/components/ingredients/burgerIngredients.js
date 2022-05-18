@@ -5,10 +5,8 @@ import ItemBlock from "./itemBlock";
 import {useSelector} from "react-redux";
 
 function BurgerIngredients() {
-    // const dispatch = useDispatch();
-    // const modalOpen = useSelector(store => store.ingredient.modalOpen);
     const data = useSelector(store => store.burger.burgersData);
-    const [current, setCurrent] = React.useState('Булки')
+    const [current, setCurrent] = React.useState('Булки');
 
     function handleScrollTab(target) {
         const item = [

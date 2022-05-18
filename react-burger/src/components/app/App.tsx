@@ -17,7 +17,6 @@ import Profile from "../../pages/profile/profile";
 import IngredientDetails from "../modal/IngredientDetails";
 import Modal from "../modal/Modal";
 
-
 function App() {
     const dispatch = useDispatch();
     const burgersData = useSelector((store: RootState) => {return store.burger.burgersData});
