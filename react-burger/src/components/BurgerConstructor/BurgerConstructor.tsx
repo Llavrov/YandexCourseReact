@@ -10,20 +10,22 @@ import { useDrop } from "react-dnd";
 import {ADD_CONSTRUCTOR_ITEM, SET_CONSTRUCTOR_BUN, UPDATE_CONSTRUCTOR_LIST} from "../../redux/actions/constructor";
 import { v4 as uuidv4 } from 'uuid';
 import {useHistory} from "react-router-dom";
+import {objectBurger} from "../../utils/types";
+import {RootState} from "../../index";
 
 function BurgerConstructor() {
     const dispatch = useDispatch();
-    const {constructorBun, constructorData, constructorFinalCoast} = useSelector(store => store.constructorBurger);
-    const {orderData: orderDetails} = useSelector(store => store.order);
-    const {success: orderSuccess } = useSelector(store => store.order.orderData);
-    const { getUser } = useSelector(store => store.user)
+    const {constructorBun, constructorData, constructorFinalCoast}: {constructorBun: objectBurger & {isEmpty: boolean}, constructorData: Array<objectBurger & {index_id: string}> , constructorFinalCoast: number} = useSelector((store: RootState) => store.constructorBurger);
+    const {orderData: orderDetails} = useSelector((store: RootState) => store.order);
+    const {success: orderSuccess } = useSelector((store: RootState) => store.order.orderData);
+    const { getUser } = useSelector((store: RootState) => store.user)
     const history = useHistory();
 
-    function handleSetComponentById(props) {
+    function handleSetComponentById(props: objectBurger) {
         return {...props, index_id: `${uuidv4()}`}
     }
 
-    const moveCard = React.useCallback((dragIndex, hoverIndex) => {
+    const moveCard = React.useCallback((dragIndex: number, hoverIndex: number) => {
         const dragCard = constructorData[dragIndex];
         const newCards = [...constructorData]
         newCards.splice(dragIndex, 1)
@@ -34,12 +36,20 @@ function BurgerConstructor() {
         })
     }, [constructorData, dispatch]);
 
+// **
+// * useDropTarget Hook
+//     * @param spec The drop target specification (object or function, function preferred)
+// * @param deps The memoization deps array to use when evaluating spec changes
+//     */
+//     export function useDrop<
+//         DragObject = unknown,
+//         DropResult = unknown,
+//         CollectedProps = unknown,
+//         >(
+
     const [{isHover}, drop] = useDrop({
         accept: 'Ingredient',
-        collect: monitor => ({
-            isHover: monitor.isOver(),
-        }),
-        drop(propsItem) {
+        drop(propsItem: objectBurger) {
             const itemConstructor = handleSetComponentById(propsItem);
             if (itemConstructor.type === 'bun') {
                 dispatch({
@@ -52,11 +62,14 @@ function BurgerConstructor() {
                     item: itemConstructor,
                 })
             }
-        }
+        },
+        collect: monitor => ({
+            isHover: monitor.isOver(),
+        })
     });
 
     function handleButtonOrder() {
-        let orders = [...constructorData.map(item => item = item._id), constructorBun._id];
+        let orders = [...constructorData.map((item: any) => item = item._id), constructorBun._id];
         if (getUser()) {
             dispatch(fetchOrderInfo('orders', orders));
         } else {
@@ -88,7 +101,7 @@ function BurgerConstructor() {
                 </div>)}
                 <section className={`${componentStyle.component} pr-4`}>
                     {
-                        constructorData.map((i, index) => {
+                        constructorData.map((i: objectBurger & {index_id: string}, index: number) => {
                             return (<BasketItem moveCard={moveCard} index={index} key={i.index_id} item={{
                                 ...i,
                                 index: index
@@ -111,6 +124,7 @@ function BurgerConstructor() {
                 <p className="text text_type_digits-medium pr-10">
                     {constructorFinalCoast}<CurrencyIcon type="primary" />
                 </p>
+                {/*// @ts-ignore*/}
                 <Button type="primary" size="large" onClick={handleButtonOrder}>
                     Оформить заказ
                 </Button>
@@ -118,10 +132,5 @@ function BurgerConstructor() {
         </div>
     )
 }
-
-// BurgerConstructor.propTypes = {
-//     data: PropTypes.arrayOf(TypesData).isRequired,
-// };
-
 
 export default BurgerConstructor;

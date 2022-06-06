@@ -2,11 +2,13 @@ import React from 'react';
 import IngridientStyle from './ModalItem.module.css';
 import {useSelector} from "react-redux";
 import {useLocation} from "react-router-dom";
+import {RootState} from "../../index";
+import {objectBurger} from "../../utils/types";
 
 function IngredientDetails(){
     const location = useLocation();
-    const data = useSelector(store => store.burger.burgersData);
-    const ingredientData = data.find(i => i._id === location.pathname.split('/').pop()) || null;
+    const data = useSelector((store: RootState) => store.burger.burgersData);
+    const ingredientData = data.find((i: objectBurger) => i._id === location.pathname.split('/').pop()) || null;
 
     return ingredientData && (
         <>

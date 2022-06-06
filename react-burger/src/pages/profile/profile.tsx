@@ -3,10 +3,11 @@ import styles from './profile.module.css';
 import {Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
 import {checkUserAuth, logout} from "../../redux/actions/user";
+import {RootState} from "../../index";
 
 
 function Profile() {
-    const {user} = useSelector(store => store.user);
+    const {user} = useSelector((store: RootState) => store.user);
     const [loginValue, setLoginValue] = React.useState(user.email)
     const [nameValue, setNameValue] = React.useState(user.name)
     const [passValue, setPassValue] = React.useState("")
@@ -16,13 +17,9 @@ function Profile() {
         dispatch(checkUserAuth());
     }, []);
 
-    // function handleSavePassClick() {
-    //
-    // }
-
     function handleLogout() {
-        dispatch(logout())
-            .then(() => {
+        // @ts-ignore
+        dispatch(logout()).then(() => {
                 dispatch(checkUserAuth());
             })
     }
@@ -55,6 +52,7 @@ function Profile() {
                         <Input icon={'EditIcon'} type="text" placeholder={'Имя'} size={'default'} onChange={e => setNameValue(e.target.value)} value={nameValue} name={'text'} />
                     </div>
                     <div className="pb-6">
+                        {/*@ts-ignore*/}
                         <PasswordInput icon={'EditIcon'} placeholder={"Введите новый пароль"} onChange={e => setPassValue(e.target.value)} value={passValue} name={'password'} />
                     </div>
                 </div>

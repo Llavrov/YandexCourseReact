@@ -4,34 +4,35 @@ import componentStyle from './BurgerConstructor.module.css';
 import {useDispatch} from "react-redux";
 import {DELETE_CONSTRUCTOR_ITEM} from "../../redux/actions/constructor";
 import {useDrag, useDrop} from "react-dnd";
-import {TypesData} from "../../utils/types";
-import PropTypes from "prop-types";
+import {objectBurger} from "../../utils/types";
 
-function BasketItem({item, moveCard, index}) {
+function BasketItem({item, moveCard, index}: {item: objectBurger & {index: number}, moveCard: (dragIndex: number, hoverIndex: number)  => void, index: number}) {
     const dispatch = useDispatch();
-    function handleCloseItem() {
+    function handleCloseItem(): void {
         dispatch({
             type: DELETE_CONSTRUCTOR_ITEM,
             item: item,
         })
     }
-    const ref = useRef(null);
+    const ref = useRef<HTMLInputElement>(null);
     const [{ handlerId }, drop] = useDrop({
         accept: 'component',
-        collect(monitor) {
+        collect(monitor: any) {
             return {
                 handlerId: monitor.getHandlerId()
             }
         },
-        hover(itemHover, monitor) {
+        hover(itemHover: any, monitor: any) {
             if (!ref.current) {
                 return;
             }
+            console.log(itemHover)
             const dragIndex = itemHover.index
             const hoverIndex = index;
             if (dragIndex === hoverIndex) {
                 return;
             }
+
             const hoverBoundingRect = ref.current.getBoundingClientRect();
             const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
             const clientOffset = monitor.getClientOffset();
@@ -60,15 +61,14 @@ function BasketItem({item, moveCard, index}) {
     if (item.type !== 'bun') {
         drag(drop(ref));
     }
-    const preventDefault = (e) => e.preventDefault();
-
+    const preventDefault = (e: React.DragEvent<HTMLDivElement>) => e.preventDefault();
 
     return (
         <div
-            index={index}
+            // index={index}
             ref={ref}
             style={{ opacity }}
-            onDrop={preventDefault}
+            onDrop={(e ) => preventDefault(e)}
             data-handler-id={handlerId}
             className={componentStyle.backetItem}
         >
@@ -82,12 +82,5 @@ function BasketItem({item, moveCard, index}) {
         </div>
     )
 }
-
-BasketItem.propTypes = {
-    item: TypesData,
-    moveCard: PropTypes.func,
-    index: PropTypes.number
-}
-
 
 export default BasketItem;

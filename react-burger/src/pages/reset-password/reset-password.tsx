@@ -1,22 +1,22 @@
-import React from 'react';
+import React, {FormEvent} from 'react';
 import styles from './resetPassword.module.css';
 import {Button, Input, PasswordInput} from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from "react-redux";
 import { fetchResetPassword} from "../../redux/actions/user";
 import {Link, Redirect, useLocation} from "react-router-dom";
+import {RootState} from "../../index";
 
 
 function ResetPassword() {
     const [passValue, setPassValue] = React.useState('');
     const [tokenValue, setTokenValue] = React.useState('');
     const location = useLocation();
-    const { from } = location.state || { from: {pathname: '/YandexCourseReact/'}};
+    const {from}: any = location.state || { from: {pathname: '/YandexCourseReact/'}};
 
     const dispatch = useDispatch();
-    const { setNewPass } = useSelector(store => store.user);
-    const { resetPass } = useSelector(store => store.user);
+    const { setNewPass, resetPass } = useSelector((store: RootState) => store.user);
 
-    function handleSavePassClick(event) {
+    function handleSavePassClick(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         dispatch(fetchResetPassword('password-reset/reset', {password: passValue, token: tokenValue}));
         return false;
@@ -41,12 +41,14 @@ function ResetPassword() {
             </p>
             <form onSubmit={handleSavePassClick}>
                 <div className="pb-6">
+                    {/*// @ts-ignore*/}
                     <PasswordInput placeholder={"Введите новый пароль"} onChange={e => setPassValue(e.target.value)} value={passValue} name={'password'} />
                 </div>
                 <div className="pb-6">
                     <Input type="text" placeholder={'Введите код из письма'} size={'default'} onChange={e => setTokenValue(e.target.value)} value={tokenValue} name={'text'} />
                 </div>
                 <div className="pb-20">
+                    {/*// @ts-ignore*/}
                     <Button type="primary" size="large">
                         Схоранить
                     </Button>

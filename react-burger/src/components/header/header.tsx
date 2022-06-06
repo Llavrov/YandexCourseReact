@@ -19,7 +19,8 @@ function Header(){
                         pathname: '/YandexCourseReact/'
                     }}>
                         <li className={`${isConstructor && headerStyle.active} pt-4 pb-4 pr-5 pl-5 `}>
-                            <BurgerIcon type={`${isConstructor ? 'primary' : 'secondary'}`}  className={headerStyle.icon}></BurgerIcon>
+                            {/*// @ts-ignore*/}
+                            <BurgerIcon type={`${isConstructor ? 'primary' : 'secondary'}`} className={headerStyle.icon}></BurgerIcon>
                             <p className="pl-2 text text_type_main-default">Конструктор</p>
                         </li>
                     </NavLink>
@@ -29,6 +30,7 @@ function Header(){
                             pathname: '/YandexCourseReact/'
                     }}>
                         <li className={`${isFeed && headerStyle.active} pt-4 pb-4 pr-5 pl-5 `}>
+                            {/*// @ts-ignore*/}
                             <ListIcon type={`${isFeed ? 'primary' : 'secondary'}`} className={headerStyle.icon}></ListIcon>
                             <p className="pl-2 text text_type_main-default">Лента заказов</p>
                         </li>
@@ -43,6 +45,7 @@ function Header(){
                     pathname: '/YandexCourseReact/profile'
                 }}>
                     <div className={`${isProfile && headerStyle.active} ${headerStyle.profile} pt-4 pb-4 pr-5 pl-5 `}>
+                        {/*// @ts-ignore*/}
                         <ProfileIcon type={`${isProfile ? 'primary' : 'secondary'}`} className={headerStyle.icon}></ProfileIcon>
                         <p className="pl-2 text text_type_main-default">Личный кабинет</p>
                     </div>

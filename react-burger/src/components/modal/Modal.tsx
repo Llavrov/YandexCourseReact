@@ -6,13 +6,13 @@ import ModalOverlay from "./ModalOverlay";
 import PropTypes from "prop-types";
 
 function Modal({...props}) {
-    const modalRoot = document.getElementById('reactModal');
+    const modalRoot = document.getElementById('reactModal') || document.createElement('div#reactModal');
 
     React.useEffect(() => {
-        const handleEscapeKey = (event) => {if (event.key === 'Escape') props.onClose()}
+        const handleEscapeKey = (event: KeyboardEvent) => {if (event.key === 'Escape') props.onClose()}
         document.addEventListener('keydown', handleEscapeKey);
 
-        return () => document.removeEventListener('keydown', handleEscapeKey);
+        return () => document.removeEventListener('keydown', (event) => handleEscapeKey(event));
     }, []);
 
     return ReactDOM.createPortal(

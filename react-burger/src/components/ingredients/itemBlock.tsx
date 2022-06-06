@@ -3,13 +3,16 @@ import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import itemStyle from './burgerIngridients.module.css';
 import {useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
-import {TypesData} from "../../utils/types";
+import {objectBurger} from "../../utils/types";
 import {Link, useLocation} from "react-router-dom";
+import {RootState} from "../../index";
 
-function ItemBlock ({...props}){
-    const constructorData = useSelector(store => store.constructorBurger.constructorData);
-    const constructorBun = useSelector(store => store.constructorBurger.constructorBun);
-    const countItems = constructorBun._id === props._id ? 1 : constructorData.filter(item => item._id === props._id).length;
+function ItemBlock ({...props}: objectBurger){
+    // @ts-ignore
+    const constructorData = useSelector((store: RootState) => store.constructorBurger.constructorData);
+    // @ts-ignore
+    const constructorBun = useSelector((store: RootState)  => store.constructorBurger.constructorBun);
+    const countItems = constructorBun._id === props._id ? 1 : constructorData.filter((item: objectBurger) => item._id === props._id).length;
 
     let location = useLocation();
 
@@ -47,9 +50,5 @@ function ItemBlock ({...props}){
         </div>
     )
 }
-
-ItemBlock.propTypes = {
-    item: TypesData,
-};
 
 export default ItemBlock;
