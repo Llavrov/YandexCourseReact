@@ -12,7 +12,7 @@ function Modal({...props}) {
         const handleEscapeKey = (event: KeyboardEvent) => {if (event.key === 'Escape') props.onClose()}
         document.addEventListener('keydown', handleEscapeKey);
 
-        return () => document.removeEventListener('keydown', (event) => handleEscapeKey(event));
+        return () => document.removeEventListener('keydown', handleEscapeKey);
     }, []);
 
     return ReactDOM.createPortal(

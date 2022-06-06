@@ -33,7 +33,7 @@ function Login() {
             <p className="text text_type_main-medium mb-6">
                 Вход
             </p>
-            <form onSubmit={(e) => handleLoginClick}>
+            <form onSubmit={(e) => handleLoginClick(e)}>
                 <div className="pb-6">
                     <Input type="email" size={'default'} onChange={e => setEmailValue(e.target.value)} value={emailValue} name={'email'} />
                 </div>
