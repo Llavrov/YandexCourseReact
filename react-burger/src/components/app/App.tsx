@@ -6,7 +6,7 @@ import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 import {fetchBurgerData} from "../../redux/actions/burgers";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../index";
-import {Route, Switch, useHistory, useLocation} from "react-router-dom";
+import {Redirect, Route, Switch, useHistory, useLocation} from "react-router-dom";
 import Login from "../../pages/login/login";
 import ProtectedRoute from "../protectedRoute/protectedRoute";
 import Register from "../../pages/register/register";
@@ -69,7 +69,8 @@ function App() {
                         <IngredientDetails></IngredientDetails>
                     </div>
                 </Route>
-                <Route path={'/'}>
+                <Route path={'/'} exact={true}>
+                    <Redirect to={'/YandexCourseReact/'}/>
                 </Route>
             </Switch>
             {background && (

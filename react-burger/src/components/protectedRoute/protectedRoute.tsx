@@ -1,12 +1,20 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import {useSelector} from "react-redux";
 import {Redirect, Route, useLocation} from "react-router-dom";
+import {RootState} from "../../index";
 
+interface StandardComponentProps {
+    onlyUnAuth?: boolean
+    UnAuth?: boolean
+    path: string
+    exact: boolean
+    children: React.ReactNode
+}
 
-function ProtectedRoute({onlyUnAuth = false, UnAuth = false, children, ...rest}) {
-    const { getUser, isAuthChecked } = useSelector(store => store.user)
+function ProtectedRoute({onlyUnAuth = false, UnAuth = false, children, ...rest}: StandardComponentProps) {
+    const { getUser, isAuthChecked } = useSelector((store: RootState) => store.user)
     const location = useLocation();
-    const { from } = location.state || { from: {pathname: '/YandexCourseReact/'}};
+    const { from }: any = location.state || { from: {pathname: '/YandexCourseReact/'}};
 
     if ( !isAuthChecked )
         return <></>
