@@ -20,18 +20,31 @@
 .container ul {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     margin: 0;
     padding: 0;
 }
 
-.container ul li {
+.container ul a li {
     display: flex;
     justify-content: center;
+    font-family: 'Jet Brains Mono';
+}
+
+.container ul a,
+.container a {
+    text-decoration: none;
+    font-family: 'Jet Brains Mono';
+    color: #8585ad;
+}
+.active p{
+    color: white;
 }
 
 .profile {
     display: flex;
     justify-content: center;
+    color: #8585ad;
 }
 
 .icon {
@@ -42,5 +55,11 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
+}
+
+@media (max-width: 960px) {
+   .logo {
+        display: none;
+    }
 }
 
